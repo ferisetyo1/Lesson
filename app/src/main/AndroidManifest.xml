@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="feri.com.lesson">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".modul.kelas.PreviewDataKelasActivity"></activity>
+        <activity android:name=".modul.kelas.DenahBangkuActivity" />
+        <activity android:name=".modul.kelas.DataKelasActivity" />
+        <activity android:name=".modul.DetailRekaman.DetailRekamanActivity" />
+        <activity android:name=".modul.DetailKelas.DetailKelasActiviy" />
+        <activity android:name=".modul.rekaman.BerhasilRekamActivity" />
+        <activity android:name=".modul.rekaman.CatatanActivity" />
+        <activity android:name=".modul.rekaman.RekamanActivity" />
+        <activity android:name=".modul.rekaman.PreviewDataRekamanActivity" />
+        <activity android:name=".modul.kelas.DataSiswaActivity" />
+        <activity android:name=".modul.rekaman.DataRekamanActivity" />
+        <activity android:name=".modul.register.RegisterActivity" />
+        <activity android:name=".modul.rekaman.JoinKelasActivity" />
+        <activity android:name=".modul.login.LoginActivity" />
+        <activity
+            android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "891698458251",
+    "firebase_url": "https://lesson-6d838.firebaseio.com",
+    "project_id": "lesson-6d838",
+    "storage_bucket": "lesson-6d838.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891698458251:android:4c8fdbf924e63e36706e8e",
+        "android_client_info": {
+          "package_name": "feri.com.lesson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891698458251-gr1qfru8j1t1a0mproqk4b4ushnf34o6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "feri.com.lesson",
+            "certificate_hash": "dbf0033389d6fb58f0595dfc9b4323c377031169"
+          }
+        },
+        {
+          "client_id": "891698458251-ok7655apdiv6fpnp9judfs1aabrc78mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSKuhJLltDx-B-02CMLobZQID1MoskNw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891698458251-ok7655apdiv6fpnp9judfs1aabrc78mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

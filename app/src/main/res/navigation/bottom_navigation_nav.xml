@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_menu_navigation"
+    app:startDestination="@id/menuUtamaFragment">
+
+    <fragment
+        android:id="@+id/menuUtamaFragment"
+        android:name="feri.com.lesson.modul.menuUtama.MenuUtamaFragment"
+        android:label="fragment_menu_utama"
+        tools:layout="@layout/fragment_menu_utama" >
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_akunFragment"
+            app:destination="@id/akunFragment" />
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_notifikasiFragment"
+            app:destination="@id/notifikasiFragment" />
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_notifikasiFragment2"
+            app:destination="@id/notifikasiFragment" />
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_daftarKelasFragment"
+            app:destination="@id/daftarKelasFragment" />
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_daftarRekamanFragment"
+            app:destination="@id/daftarRekamanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/akunFragment"
+        android:name="feri.com.lesson.modul.menuAkun.AkunFragment"
+        android:label="fragment_akun"
+        tools:layout="@layout/fragment_akun" />
+    <fragment
+        android:id="@+id/notifikasiFragment"
+        android:name="feri.com.lesson.modul.menuNotifikasi.NotifikasiFragment"
+        android:label="fragment_notifikasi"
+        tools:layout="@layout/fragment_notifikasi" />
+    <fragment
+        android:id="@+id/daftarKelasFragment"
+        android:name="feri.com.lesson.modul.menuDaftarKelas.DaftarKelasFragment"
+        android:label="fragment_daftar_kelas"
+        tools:layout="@layout/fragment_daftar_kelas" />
+    <fragment
+        android:id="@+id/daftarRekamanFragment"
+        android:name="feri.com.lesson.modul.menuDaftarRekaman.DaftarRekamanFragment"
+        android:label="fragment_daftar_rekaman"
+        tools:layout="@layout/fragment_daftar_rekaman" />
+</navigation>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">LESSON</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="LoginTittle">Login</string>
+    <string name="hintEmail">Email</string>
+    <string name="hintPassword">Password</string>
+    <string name="btnLoginText">Login</string>
+    <string name="errorFieldKosong">Harap isi field ini terlebih dahulu</string>
+    <string name="errorUserNotFound">User tidak ditemukan</string>
+    <string name="MenuDaftarKelas">Daftar Kelas</string>
+    <string name="MenuDaftarRekaman">Daftar Rekaman</string>
+    <string name="MenuUtama">Observasi</string>
+    <string name="MenuNotifikasi">Notifikasi</string>
+    <string name="MenuAkun">Akun</string>
+    <string name="textBtnLogout">Logout</string>
+    <string name="text_btnmulairekamhome">Let\'s Start</string>
+    <string name="heading1_home">Mari Mulai !</string>
+    <string name="heading2_home">Mulai proses observasi dengan menekan tombol ini</string>
+</resources>
