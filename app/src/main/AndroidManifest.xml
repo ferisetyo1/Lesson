@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.kelas.PreviewDataKelasActivity"></activity>
+        <activity android:name=".modul.kelas.BerhasilTambahKelasActivity"></activity>
+        <activity android:name=".modul.kelas.PreviewDataKelasActivity" />
         <activity android:name=".modul.kelas.DenahBangkuActivity" />
         <activity android:name=".modul.kelas.DataKelasActivity" />
         <activity android:name=".modul.DetailRekaman.DetailRekamanActivity" />
@@ -23,8 +24,7 @@
         <activity android:name=".modul.register.RegisterActivity" />
         <activity android:name=".modul.rekaman.JoinKelasActivity" />
         <activity android:name=".modul.login.LoginActivity" />
-        <activity
-            android:name=".MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -28,21 +28,20 @@
             android:id="@+id/empty_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title2">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_mulairekamhome2"
+                android:id="@+id/btn_tbhKelas"
                 style="@style/Platform.MaterialComponents"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
-                android:background="@color/colorSkyBlue1"
                 android:gravity="center"
-                android:text="@string/text_btnmulairekamhome"
+                android:text="Tambah Kelas"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/colorSkyBlue1"
                 app:cornerRadius="8dp"
@@ -54,14 +53,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="150dp"
                 android:layout_height="175dp"
+                android:contentDescription="TODO"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_book"
                 android:tint="@color/colorSkyBlue1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.2" />
+                app:layout_constraintVertical_bias="0.2"
+                app:srcCompat="@drawable/ic_book" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -77,14 +77,15 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Anda belum mempunyai sebuah data kelas, untuk membuat silahkan tekan "
+                android:textAlignment="center"
                 android:textColor="@color/colorSkyBlue1"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_tbhKelas"
+                app:layout_constraintStart_toStartOf="@+id/btn_tbhKelas"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
@@ -96,7 +97,7 @@
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_mulairekamhome2" />
+                app:layout_constraintTop_toBottomOf="@id/btn_tbhKelas" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -104,12 +105,56 @@
             android:id="@+id/default_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title2">
 
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/sv_bordered"
+                android:drawableEnd="@drawable/ic_search_black_24dp"
+                android:ems="10"
+                android:hint="Cari Kelas"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:textColorHint="@color/colorSkyBlue3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_kelas"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search"
+                tools:listitem="@layout/item_daftar_kelas" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:tint="@color/white"
+                app:backgroundTint="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_add_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

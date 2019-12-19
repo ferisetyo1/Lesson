@@ -8,7 +8,7 @@
     <string name="hintPassword">Password</string>
     <string name="btnLoginText">Login</string>
     <string name="errorFieldKosong">Harap isi field ini terlebih dahulu</string>
-    <string name="errorUserNotFound">User tidak ditemukan</string>
+    <string name="errorUserNotFound">Email tidak ditemukan</string>
     <string name="MenuDaftarKelas">Daftar Kelas</string>
     <string name="MenuDaftarRekaman">Daftar Rekaman</string>
     <string name="MenuUtama">Observasi</string>
@@ -18,4 +18,15 @@
     <string name="text_btnmulairekamhome">Let\'s Start</string>
     <string name="heading1_home">Mari Mulai !</string>
     <string name="heading2_home">Mulai proses observasi dengan menekan tombol ini</string>
+    <string name="text_btnlogout">Logout</string>
+    <string name="errorPasswordSalah">password salah, silahkan periksa kembali</string>
+    <string name="errorPaswordTidaksama">Password harus sama</string>
+    <string name="DataKelas">Tambah Kelas</string>
+    <string name="btn_simpanDenah">Simpan Denah Kelas</string>
+    <string-array name="modelKelasArray">
+        <item>Pilih Denah Kelas</item>
+        <item>Classroom</item>
+        <item>Group Discussion</item>
+        <item>U-Shape</item>
+    </string-array>
 </resources>

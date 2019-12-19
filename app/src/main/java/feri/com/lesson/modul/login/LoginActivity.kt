@@ -1,18 +1,25 @@
 package feri.com.lesson.modul.login
 
-import android.os.Build
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import feri.com.lesson.MainActivity
 import feri.com.lesson.R
+import feri.com.lesson.modul.register.RegisterActivity
+import feri.com.lesson.modul.util.SBCustom
+import feri.com.lesson.modul.util.const
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -24,24 +31,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        supportActionBar?.hide()
+
+        //firebase init
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
-        db_reff = firebaseDatabase.getReference("akun")
+        db_reff = firebaseDatabase.getReference(const.USER_DB)
+
         //listener
         btn_login.setOnClickListener(this)
+        tv_reglink.setOnClickListener(this)
     }
 
     fun FieldisError(): Boolean {
         if (et_email.text.isNullOrEmpty()) {
             et_email.setError(resources.getString(R.string.errorFieldKosong))
-            return false
+            et_email.requestFocus()
+            return true
         }
 
         if (et_password.text.isNullOrEmpty()) {
             et_password.setError(resources.getString(R.string.errorFieldKosong))
-            return false
+            et_password.requestFocus()
+            return true
         }
-        return true
+        return false
     }
 
     override fun onClick(p0: View?) {
@@ -49,24 +63,54 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_login -> {
                 proses_login()
             }
+            R.id.tv_reglink -> {
+                startActivity(Intent(this, RegisterActivity::class.java))
+                finish()
+            }
         }
     }
 
     private fun proses_login() {
-        if (!FieldisError()) {
+
+        if (FieldisError()) {
             return
         }
 
         firebaseAuth.signInWithEmailAndPassword(
             et_email.text?.trim().toString(),
             et_password.text?.trim().toString()
-        ).addOnCompleteListener(OnCompleteListener {
-
-        }).addOnFailureListener(OnFailureListener {
-            if ((it as FirebaseAuthException).errorCode.equals("ERROR_USER_NOT_FOUND")){
-                Snackbar.make(loginlayout,R.string.errorUserNotFound,Snackbar.LENGTH_LONG)
-                    .show()
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
-        })
+        }.addOnFailureListener {
+            if (it is FirebaseAuthException){
+                if (it.errorCode.equals("ERROR_USER_NOT_FOUND")) {
+                    SBCustom.getSnackbar(loginlayout,resources.getText(R.string.errorUserNotFound).toString()).show()
+                    return@addOnFailureListener
+                } else if (it.errorCode.equals("ERROR_WRONG_PASSWORD")) {
+                    SBCustom.getSnackbar(loginlayout,resources.getText(R.string.errorPasswordSalah).toString()).show()
+                    return@addOnFailureListener
+                } else {
+                    SBCustom.getSnackbar(loginlayout,it.localizedMessage.toString()).show()
+                    return@addOnFailureListener
+                }
+            }else{
+                SBCustom.getSnackbar(loginlayout,it.localizedMessage.toString()).show()
+                return@addOnFailureListener
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = this.currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(
+                focusedView.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
     }
 }

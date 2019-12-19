@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="2dp" />
+                    <padding android:left="16dp" />
+                    <stroke android:width="2dp" android:color="@color/colorSkyBlue1" />
+                </shape>
+            </item>
+            <item android:end="8dp" android:drawable="@drawable/ic_keyboard_arrow_down" android:gravity="center|right">
+            </item>
+        </layer-list>
+    </item>
+</selector>

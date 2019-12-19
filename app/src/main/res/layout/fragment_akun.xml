@@ -11,12 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/textBtnLogout"
+            android:gravity="center"
+            android:text="@string/text_btnlogout"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorSkyBlue1"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

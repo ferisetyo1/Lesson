@@ -14,14 +14,14 @@
             android:id="@+id/ic_mic"
             android:layout_width="150dp"
             android:layout_height="175dp"
+            android:layout_marginTop="104dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_mic"
+            app:srcCompat="@drawable/ic_mic"
             android:tint="@color/colorSkyBlue1"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintVertical_bias="0.3" />
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -51,15 +51,15 @@
 
         <TextView
             android:id="@+id/tv_heading2"
-            android:layout_width="270dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/heading2_home"
             android:textAlignment="center"
             android:textColor="@color/colorSkyBlue1"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_heading"
+            app:layout_constraintStart_toStartOf="@+id/tv_heading"
             app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
 
         <com.google.android.material.button.MaterialButton
@@ -68,7 +68,6 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:background="@color/colorSkyBlue1"
             android:gravity="center"
             android:text="@string/text_btnmulairekamhome"
             android:textColor="@color/white"

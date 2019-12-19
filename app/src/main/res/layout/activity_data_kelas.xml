@@ -6,4 +6,185 @@
     android:layout_height="match_parent"
     tools:context=".modul.kelas.DataKelasActivity">
 
+    <TextView
+        android:id="@+id/tv_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/DataKelas"
+        android:textAllCaps="true"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Masukkan Data Kelas"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title3" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="Masukkan beberapa data yang dibutuhkan dalam form"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+
+    <Button
+        android:id="@+id/btn_datasiswa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSkyBlue1"
+        android:text="Data Siswa"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorSkyBlue1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back"
+        android:contentDescription="TODO" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_datasiswa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_namakelas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/et_bordercorner"
+                android:inputType="textPersonName"
+                android:nextFocusDown="@id/et_namasekolah"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Kelas"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toTopOf="@+id/et_namakelas"
+                app:layout_constraintStart_toStartOf="@+id/et_namakelas" />
+
+            <EditText
+                android:id="@+id/et_namasekolah"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/et_bordercorner"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:nextFocusDown="@id/et_pelajaran"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintEnd_toEndOf="@+id/et_namakelas"
+                app:layout_constraintStart_toStartOf="@+id/et_namakelas"
+                app:layout_constraintTop_toBottomOf="@+id/et_namakelas" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Sekolah"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toTopOf="@+id/et_namasekolah"
+                app:layout_constraintStart_toStartOf="@+id/et_namasekolah" />
+
+            <EditText
+                android:id="@+id/et_pelajaran"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/et_bordercorner"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:nextFocusDown="@id/et_jumlahsiswa"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintEnd_toEndOf="@+id/et_namakelas"
+                app:layout_constraintStart_toStartOf="@+id/et_namakelas"
+                app:layout_constraintTop_toBottomOf="@+id/et_namasekolah" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Pelajaran"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toTopOf="@+id/et_pelajaran"
+                app:layout_constraintStart_toStartOf="@+id/et_pelajaran" />
+
+            <EditText
+                android:id="@+id/et_jumlahsiswa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/et_bordercorner"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/et_namakelas"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/et_namakelas"
+                app:layout_constraintTop_toBottomOf="@+id/et_pelajaran"
+                app:layout_constraintVertical_bias="0" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Jumlah Siswa"
+                android:textColor="@color/colorSkyBlue1"
+                app:layout_constraintBottom_toTopOf="@+id/et_jumlahsiswa"
+                app:layout_constraintStart_toStartOf="@+id/et_jumlahsiswa" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

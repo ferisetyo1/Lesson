@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="mystyletextlayout" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+        <item name="android:textColor">@color/colorSkyBlue1</item>
+        <item name="android:textColorHint">@color/colorSkyBlue1</item>
+        <item name="colorControlNormal">@color/colorSkyBlue1</item>
+        <item name="colorControlActivated">@color/colorSkyBlue1</item>
+        <item name="colorControlHighlight">@color/colorSkyBlue1</item>
+    </style>
 </resources>
