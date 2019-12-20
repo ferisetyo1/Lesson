@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
+import feri.com.lesson.model.TempKodeClassModel
 import feri.com.lesson.model.UserModel
 import feri.com.lesson.modul.util.KeyGen
 import feri.com.lesson.modul.util.const
@@ -27,6 +28,7 @@ class PreviewDataKelasActivity : AppCompatActivity() {
         //firebase init
         firebaseDatabase = FirebaseDatabase.getInstance()
         db_reff = firebaseDatabase.getReference(const.KELAS_DB)
+        var db_reff_listkode = firebaseDatabase.getReference(const.CLASS_CODE)
         var db_reff_akun = firebaseDatabase.getReference(const.USER_DB)
 
         //intentData
@@ -46,6 +48,8 @@ class PreviewDataKelasActivity : AppCompatActivity() {
 
             })
 
+        db_reff_listkode.child(dataKelas.kodeKelas!!).setValue(TempKodeClassModel(dataKelas.idPengajar,dataKelas.id))
+
         btn_buatKode.setOnClickListener {
             db_reff.child(dataKelas.idPengajar!!).child(dataKelas.id!!).setValue(dataKelas)
                 .addOnCompleteListener {
@@ -57,6 +61,7 @@ class PreviewDataKelasActivity : AppCompatActivity() {
                     )
                     finish()
                 }
+
         }
 
         btn_back2.setOnClickListener { finish() }

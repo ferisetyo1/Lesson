@@ -42,7 +42,7 @@ class DenahBangkuActivity : AppCompatActivity() {
             )
         }
 
-        var layoutManager=GridLayoutManager(this,3)
+        var layoutManager=GridLayoutManager(this,6)
         rv_denah.layoutManager=layoutManager
         rv_denah.adapter=DenahBangkuAdapter(this,dataGroup)
         btn_simpan.setOnClickListener{

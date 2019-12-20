@@ -63,7 +63,8 @@ class DaftarKelasFragment : Fragment(), View.OnClickListener, TextWatcher {
         if (!s.isNullOrEmpty()) {
             query = query
                 .orderByChild("nama")
-                .equalTo(s.toLowerCase())
+                .startAt(s.toLowerCase())
+                .endAt(s.toString()+"\uf8ff")
         }
 
         rv_option = FirebaseRecyclerOptions.Builder<KelasModel>()

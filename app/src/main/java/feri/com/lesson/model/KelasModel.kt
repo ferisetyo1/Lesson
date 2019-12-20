@@ -19,9 +19,8 @@ class KelasModel(
     var kodeKelas: String? = null
 ) : Parcelable {
 
-
-
     override fun toString(): String {
         return "KelasModel(id=$id, idPengajar=$idPengajar, nama=$nama, namaSekolah=$namaSekolah, namaPelajaran=$namaPelajaran, list_siswa=$list_siswa, list_group=$list_group, kodeKelas=$kodeKelas)"
     }
+
 }

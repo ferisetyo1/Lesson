@@ -10,13 +10,13 @@
         android:id="@+id/imageView2"
         android:layout_width="150dp"
         android:layout_height="175dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="@dimen/aftertitle"
         android:contentDescription="TODO"
         android:scaleType="fitXY"
         android:tint="@color/colorSkyBlue1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_close"
         app:srcCompat="@drawable/ic_book" />
 
     <ImageButton
@@ -33,12 +33,15 @@
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/outside_startend"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/outside_startend"
         android:text="Kelas Dibuat!"
+        android:textAlignment="center"
         android:textColor="@color/colorSkyBlue1"
-        android:textSize="48sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,8 +79,8 @@
         android:layout_marginTop="8dp"
         android:text="Bagikan kode dengan tombol dibawah!"
         android:textColor="@color/colorSkyBlue1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView26"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
         app:layout_constraintTop_toBottomOf="@+id/kodeKelas" />
 
     <androidx.appcompat.widget.AppCompatImageButton
