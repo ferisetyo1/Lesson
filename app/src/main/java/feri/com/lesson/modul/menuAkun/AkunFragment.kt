@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
 import feri.com.lesson.R
-import feri.com.lesson.modul.login.LoginActivity
+import feri.com.lesson.modul.authentication.LoginActivity
 import kotlinx.android.synthetic.main.fragment_akun.*
 
 class AkunFragment : Fragment(), View.OnClickListener {

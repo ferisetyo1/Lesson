@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modul.kelas.DenahBangkuActivity">
+    tools:context=".modul.kelas.DenahKelasActivity">
 
 
     <ImageButton
@@ -43,6 +43,7 @@
         android:background="@drawable/spinner_bordered"
         android:dropDownWidth="match_parent"
         android:entries="@array/modelKelasArray"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
@@ -70,40 +71,75 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/et_span"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/outside_startend"
+        android:background="@drawable/et_bordered"
+        android:ems="10"
+        android:hint="Span"
+        android:inputType="number"
+        android:text="3"
+        android:textColor="@color/colorSkyBlue1"
+        android:textColorHint="@color/colorSkyBlue3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
     <HorizontalScrollView
+        android:id="@+id/denahhh"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_simpan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner">
+        app:layout_constraintTop_toBottomOf="@+id/et_span">
 
-        <LinearLayout
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView16"-->
+        <!--                android:layout_width="250dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center_horizontal"-->
+        <!--                android:layout_marginStart="@dimen/outside_startend"-->
+        <!--                android:layout_marginTop="16dp"-->
+        <!--                android:layout_marginEnd="@dimen/outside_startend"-->
+        <!--                android:background="@drawable/tv_bordercorner"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="Papan Kelas"-->
+        <!--                android:textColor="@color/colorSkyBlue1"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/spinner" />-->
+
+        <!--            <androidx.recyclerview.widget.RecyclerView-->
+        <!--                android:id="@+id/rv_denah"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_gravity="center" />-->
+        <!--        </LinearLayout>-->
+
+        <FrameLayout
+            android:id="@+id/fragmentDenah"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/outside_startend"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/outside_startend"
-                android:background="@drawable/tv_bordercorner"
-                android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:text="Papan Kelas"
-                android:textColor="@color/colorSkyBlue1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_denah"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </LinearLayout>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Span"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintBottom_toTopOf="@+id/et_span"
+        app:layout_constraintStart_toStartOf="@+id/et_span" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

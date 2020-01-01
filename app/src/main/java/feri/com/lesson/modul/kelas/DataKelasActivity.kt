@@ -9,10 +9,8 @@ import feri.com.lesson.R
 import feri.com.lesson.model.GroupModel
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.SiswaModel
-import feri.com.lesson.modul.util.KeyGen
+import feri.com.lesson.util.KeyGen
 import kotlinx.android.synthetic.main.activity_data_kelas.*
-import java.lang.reflect.Field
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DataKelasActivity : AppCompatActivity(), View.OnClickListener {

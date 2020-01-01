@@ -17,4 +17,5 @@
         <item name="colorControlActivated">@color/colorSkyBlue1</item>
         <item name="colorControlHighlight">@color/colorSkyBlue1</item>
     </style>
+
 </resources>

@@ -1,25 +1,19 @@
-package feri.com.lesson.modul.login
+package feri.com.lesson.modul.authentication
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import feri.com.lesson.MainActivity
 import feri.com.lesson.R
-import feri.com.lesson.modul.register.RegisterActivity
-import feri.com.lesson.modul.util.SBCustom
-import feri.com.lesson.modul.util.const
+import feri.com.lesson.util.SBCustom
+import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -103,14 +97,4 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun hideKeyboard() {
-        val inputManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        val focusedView = this.currentFocus
-        if (focusedView != null) {
-            inputManager.hideSoftInputFromWindow(
-                focusedView.windowToken,
-                InputMethodManager.HIDE_NOT_ALWAYS
-            )
-        }
-    }
 }

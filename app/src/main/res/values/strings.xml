@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LESSON</string>
+    <string name="app_name">LESON</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -12,8 +12,8 @@
     <string name="MenuDaftarKelas">Daftar Kelas</string>
     <string name="MenuDaftarRekaman">Daftar Rekaman</string>
     <string name="MenuUtama">Observasi</string>
-    <string name="MenuNotifikasi">Notifikasi</string>
     <string name="MenuAkun">Akun</string>
+    <string name="MenuSetting">Setting</string>
     <string name="textBtnLogout">Logout</string>
     <string name="text_btnmulairekamhome">Let\'s Start</string>
     <string name="heading1_home">Mari Mulai !</string>
@@ -25,8 +25,15 @@
     <string name="btn_simpanDenah">Simpan Denah Kelas</string>
     <string-array name="modelKelasArray">
         <item>Pilih Denah Kelas</item>
-        <item>Classroom</item>
         <item>Group Discussion</item>
-        <item>U-Shape</item>
+        <item>Classroom</item>
+        <!--        <item>U-Shape</item>-->
+    </string-array>
+    <string-array name="tipe_kegiatan">
+        <item>Pilih Kegiatan</item>
+        <item>Siswa bertanya</item>
+        <item>Siswa Izin</item>
+        <item>Siswa Presentasi</item>
+        <item>Siswa Menjawav</item>
     </string-array>
 </resources>

@@ -1,13 +1,15 @@
-package feri.com.lesson.modul.DetailKelas
+package feri.com.lesson.modul.detailRekaman
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import feri.com.lesson.R
 
-class DetailKelasActiviy : AppCompatActivity() {
+class DetailRekamanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_kelas_activiy)
+        setContentView(R.layout.activity_detail_rekaman)
+
+        supportActionBar?.hide()
     }
 }

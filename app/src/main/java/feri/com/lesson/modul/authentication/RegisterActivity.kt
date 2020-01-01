@@ -1,11 +1,9 @@
-package feri.com.lesson.modul.register
+package feri.com.lesson.modul.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -13,8 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import feri.com.lesson.MainActivity
 import feri.com.lesson.R
 import feri.com.lesson.model.UserModel
-import feri.com.lesson.modul.login.LoginActivity
-import feri.com.lesson.modul.util.const
+import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {

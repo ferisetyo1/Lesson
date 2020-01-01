@@ -6,4 +6,159 @@
     android:layout_height="match_parent"
     tools:context=".modul.rekaman.CatatanActivity">
 
+    <TextView
+        android:id="@+id/waktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="00:00:00"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/outside_startend"
+        android:text="Judul Catatan"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waktu" />
+
+    <EditText
+        android:id="@+id/judulCatatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_bordercorner"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView46"
+        app:layout_constraintStart_toStartOf="@+id/textView46"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tipe Kegiatan"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="@+id/judulCatatan"
+        app:layout_constraintStart_toStartOf="@+id/judulCatatan"
+        app:layout_constraintTop_toBottomOf="@+id/judulCatatan" />
+
+    <Spinner
+        android:id="@+id/spinnerKegiatan"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/spinner_borderedcorner"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView49"
+        app:layout_constraintStart_toStartOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Deskripsi Kegiatan"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerKegiatan"
+        app:layout_constraintStart_toStartOf="@+id/spinnerKegiatan"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerKegiatan" />
+
+    <EditText
+        android:id="@+id/deskripsiCatatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_bordercorner"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView51"
+        app:layout_constraintStart_toStartOf="@+id/textView51"
+        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+    <LinearLayout
+        android:id="@+id/extralayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btn_tambah"
+        app:layout_constraintEnd_toEndOf="@+id/deskripsiCatatan"
+        app:layout_constraintStart_toStartOf="@+id/deskripsiCatatan"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsiCatatan">
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Foto/Video Kegiatan"
+            android:textColor="@color/colorSkyBlue1" />
+
+        <ImageView
+            android:id="@+id/pv_foto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <VideoView
+            android:id="@+id/pv_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_tambah"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_solidcorner"
+        android:text="Tambah"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_batal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_batal"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_outlinecorner"
+        android:text="Batal"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_tambah"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_tambah" />
+
+    <ImageButton
+        android:id="@+id/btn_tambahfoto"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_circle_borderd"
+        android:scaleType="centerInside"
+        android:tint="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="@+id/deskripsiCatatan"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsiCatatan"
+        app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

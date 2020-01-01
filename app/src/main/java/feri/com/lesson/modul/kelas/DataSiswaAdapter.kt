@@ -60,7 +60,7 @@ class DataSiswaAdapter(val context: Context?, var listSiswa: ArrayList<SiswaMode
         holder.bind(listSiswa.get(position))
     }
 
-    fun isEmpty():Boolean{
+    fun FieldisEmpty():Boolean{
         for (siswaModel in listSiswa){
             if (siswaModel.nama.isNullOrEmpty()){
                 return true

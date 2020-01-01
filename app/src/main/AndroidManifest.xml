@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="feri.com.lesson">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,21 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.kelas.BerhasilTambahKelasActivity"></activity>
+        <activity android:name=".modul.notifikasi.NotifikasiActivity"></activity>
+        <activity android:name=".modul.kelas.BerhasilTambahKelasActivity" />
         <activity android:name=".modul.kelas.PreviewDataKelasActivity" />
-        <activity android:name=".modul.kelas.DenahBangkuActivity" />
+        <activity android:name=".modul.kelas.DenahKelasActivity" />
         <activity android:name=".modul.kelas.DataKelasActivity" />
-        <activity android:name=".modul.DetailRekaman.DetailRekamanActivity" />
-        <activity android:name=".modul.DetailKelas.DetailKelasActiviy" />
+        <activity android:name=".modul.detailRekaman.DetailRekamanActivity" />
+        <activity android:name=".modul.detailKelas.DetailKelasActiviy" />
         <activity android:name=".modul.rekaman.BerhasilRekamActivity" />
         <activity android:name=".modul.rekaman.CatatanActivity" />
         <activity android:name=".modul.rekaman.RekamanActivity" />
         <activity android:name=".modul.rekaman.PreviewDataRekamanActivity" />
         <activity android:name=".modul.kelas.DataSiswaActivity" />
         <activity android:name=".modul.rekaman.DataRekamanActivity" />
-        <activity android:name=".modul.register.RegisterActivity" />
+        <activity android:name=".modul.authentication.RegisterActivity" />
         <activity android:name=".modul.rekaman.JoinKelasActivity" />
-        <activity android:name=".modul.login.LoginActivity" />
+        <activity android:name=".modul.authentication.LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +42,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="feri.com.lesson.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

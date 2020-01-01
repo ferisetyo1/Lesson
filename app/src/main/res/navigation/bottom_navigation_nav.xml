@@ -14,28 +14,20 @@
             android:id="@+id/action_menuUtamaFragment_to_akunFragment"
             app:destination="@id/akunFragment" />
         <action
-            android:id="@+id/action_menuUtamaFragment_to_notifikasiFragment"
-            app:destination="@id/notifikasiFragment" />
-        <action
-            android:id="@+id/action_menuUtamaFragment_to_notifikasiFragment2"
-            app:destination="@id/notifikasiFragment" />
-        <action
             android:id="@+id/action_menuUtamaFragment_to_daftarKelasFragment"
             app:destination="@id/daftarKelasFragment" />
         <action
             android:id="@+id/action_menuUtamaFragment_to_daftarRekamanFragment"
             app:destination="@id/daftarRekamanFragment" />
+        <action
+            android:id="@+id/action_menuUtamaFragment_to_settingFragment2"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/akunFragment"
         android:name="feri.com.lesson.modul.menuAkun.AkunFragment"
         android:label="fragment_akun"
         tools:layout="@layout/fragment_akun" />
-    <fragment
-        android:id="@+id/notifikasiFragment"
-        android:name="feri.com.lesson.modul.menuNotifikasi.NotifikasiFragment"
-        android:label="fragment_notifikasi"
-        tools:layout="@layout/fragment_notifikasi" />
     <fragment
         android:id="@+id/daftarKelasFragment"
         android:name="feri.com.lesson.modul.menuDaftarKelas.DaftarKelasFragment"
@@ -46,4 +38,9 @@
         android:name="feri.com.lesson.modul.menuDaftarRekaman.DaftarRekamanFragment"
         android:label="fragment_daftar_rekaman"
         tools:layout="@layout/fragment_daftar_rekaman" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="feri.com.lesson.modul.menuSetting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

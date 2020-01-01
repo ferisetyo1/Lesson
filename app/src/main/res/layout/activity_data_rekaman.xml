@@ -6,4 +6,118 @@
     android:layout_height="match_parent"
     tools:context=".modul.rekaman.DataRekamanActivity">
 
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="TODO"
+        android:tint="@color/colorSkyBlue1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <TextView
+        android:id="@+id/tv_title8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Denah Kelas"
+        android:textAllCaps="true"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginTop="@dimen/aftertitle"
+        android:layout_marginEnd="@dimen/outside_startend"
+        android:text="Masukkan Data Rekaman"
+        android:textAlignment="center"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title8" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Masukkan data dalam form ini"
+        android:textAlignment="center"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <EditText
+        android:id="@+id/judulRekaman"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/et_bordercorner"
+        android:ems="10"
+        android:hint="Masukkan judul dari observasi"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorSkyBlue1"
+        android:textColorHint="@color/colorSkyBlue3"
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Judul Rekaman"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintBottom_toTopOf="@+id/judulRekaman"
+        app:layout_constraintStart_toStartOf="@+id/judulRekaman" />
+
+    <EditText
+        android:id="@+id/tanggalObservasi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/et_bordercorner"
+        android:drawableEnd="@drawable/ic_date_range_black_24dp"
+        android:ems="10"
+        android:hint="12/12/2019"
+        android:inputType="datetime"
+        android:textColor="@color/colorSkyBlue1"
+        android:textColorHint="@color/colorSkyBlue3"
+        app:layout_constraintEnd_toEndOf="@+id/judulRekaman"
+        app:layout_constraintStart_toStartOf="@+id/judulRekaman"
+        app:layout_constraintTop_toBottomOf="@+id/judulRekaman" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Observasi"
+        android:textColor="@color/colorSkyBlue1"
+        app:layout_constraintBottom_toTopOf="@+id/tanggalObservasi"
+        app:layout_constraintStart_toStartOf="@+id/tanggalObservasi" />
+
+    <Button
+        android:id="@+id/btn_lanjut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSkyBlue1"
+        android:text="Lanjut"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/regLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modul.register.RegisterActivity">
+    tools:context=".modul.authentication.RegisterActivity">
 
     <TextView
         android:id="@+id/textView2"

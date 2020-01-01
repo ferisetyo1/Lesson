@@ -6,4 +6,129 @@
     android:layout_height="match_parent"
     tools:context=".modul.rekaman.RekamanActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@color/colorSkyBlue4"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/judulRekaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rekaman Pak Budi"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textColor="@color/colorSkyBlue1"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/judulRekaman"
+        app:layout_constraintStart_toStartOf="@+id/judulRekaman"
+        app:layout_constraintTop_toBottomOf="@+id/judulRekaman" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:background="@color/colorSkyBlue3"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"></LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_create_catatan"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_circle_yellow"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        android:tint="@color/white"
+        android:clickable="false"
+        app:layout_constraintEnd_toStartOf="@+id/btn_record"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/ic_create_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/btn_record"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_circle_red"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_create_catatan"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/ic_fiber_manual_record_black_24dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorSkyBlue3"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_catatan">
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_subject_black_24dp"
+            android:gravity="center_vertical"
+            android:text="List View"
+            android:textColor="@color/colorSkyBlue1"
+            android:textStyle="bold"
+            app:drawableTint="@color/colorSkyBlue1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_selesai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSkyBlue1"
+        android:text="Selesai"
+        android:clickable="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_catatan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_selesai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:listitem="@layout/item_catatan" />
 </androidx.constraintlayout.widget.ConstraintLayout>

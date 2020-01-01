@@ -1,29 +1,25 @@
 package feri.com.lesson.modul.rekaman
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import com.google.firebase.database.*
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
-import feri.com.lesson.model.TempKodeClassModel
+import feri.com.lesson.model.TempKodeKelasModel
 import feri.com.lesson.model.UserModel
-import feri.com.lesson.modul.util.const
+import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_join_kelas.*
 import kotlinx.android.synthetic.main.activity_join_kelas.empty_layout
-import kotlinx.android.synthetic.main.fragment_daftar_kelas.*
-import java.util.*
-import kotlin.collections.HashMap
 
 class JoinKelasActivity : AppCompatActivity() {
 
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var db_reff: DatabaseReference
-    private var testtt = KelasModel()
+    private var curr_kelasModel = KelasModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,29 +53,33 @@ class JoinKelasActivity : AppCompatActivity() {
         })
 
         btn_join.setOnClickListener {
-            if (!testtt.id.isNullOrEmpty()) {
-                Log.d("testtt", testtt.toString())
-            }
+            tranferDataKelas()
+        }
+    }
+
+    private fun tranferDataKelas() {
+        if (!curr_kelasModel.id.isNullOrEmpty()) {
+            startActivity(Intent(this,DataRekamanActivity::class.java)
+                .putExtra("dataKelas",curr_kelasModel))
         }
     }
 
     private fun finding(s: String) {
         db_reff.orderByKey().equalTo(s).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onDataChange(p0: DataSnapshot) {
                 if (!p0.exists()) {
                     defaultlayout.visibility = View.GONE
                     empty_layout.visibility = View.VISIBLE
-                    testtt = KelasModel()
+                    curr_kelasModel = KelasModel()
                 } else {
                     defaultlayout.visibility = View.VISIBLE
                     empty_layout.visibility = View.GONE
                 }
                 p0.children.forEach {
-                    var tempKodeClassModel = it.getValue(TempKodeClassModel::class.java)
+                    var tempKodeClassModel = it.getValue(TempKodeKelasModel::class.java)
                     firebaseDatabase.getReference(const.KELAS_DB)
                         .child(tempKodeClassModel?.idPengajar.toString())
                         .orderByKey()
@@ -91,7 +91,7 @@ class JoinKelasActivity : AppCompatActivity() {
                             override fun onDataChange(p0: DataSnapshot) {
                                 p0.children.forEach {
                                     val kelasModel = it.getValue(KelasModel::class.java)
-                                    testtt = kelasModel!!
+                                    curr_kelasModel = kelasModel!!
                                     updateUI(kelasModel)
                                 }
                             }
@@ -106,7 +106,7 @@ class JoinKelasActivity : AppCompatActivity() {
 
 
     private fun updateUI(kelasModel: KelasModel?) {
-        namaPelajaran.text = kelasModel?.namaPelajaran
+        tanggalObservasi.text = kelasModel?.namaPelajaran
         jmlSiswa.text = kelasModel?.list_siswa?.size.toString()
         denahtype.text = when (kelasModel?.list_group?.get(0)?.tipeGroup) {
             0 -> resources.getStringArray(R.array.modelKelasArray).get(1)

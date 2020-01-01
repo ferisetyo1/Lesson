@@ -8,11 +8,11 @@ import kotlinx.android.parcel.Parcelize
 @Keep
 @IgnoreExtraProperties
 @Parcelize
-class SiswaModel (
-    var id:String?=null,
-    var nama:String?=null,
-    var absen:Int?=-1
-) : Parcelable{
+class SiswaModel(
+    var id: String? = null,
+    var nama: String? = null,
+    var absen: Int? = -1
+) : Parcelable {
     override fun toString(): String {
         return "SiswaModel(id=$id, nama=$nama, absen=$absen)"
     }

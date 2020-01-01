@@ -11,9 +11,9 @@ import kotlinx.android.parcel.Parcelize
 class GroupModel(
     var id: String? = null,
     var tipeGroup: Int? = -1,
-    var listMurid: ArrayList<Int> = ArrayList()
+    var anggota: ArrayList<Int> = ArrayList()
 ) : Parcelable {
     override fun toString(): String {
-        return "GroupModel(id=$id, tipeGroup=$tipeGroup, listMurid=$listMurid)"
+        return "GroupModel(id=$id, tipeGroup=$tipeGroup, listMurid=$anggota)"
     }
 }
