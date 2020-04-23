@@ -16,6 +16,7 @@ class KelasModel(
     var namaPelajaran: String? = null,
     var list_siswa: ArrayList<SiswaModel> = ArrayList(),
     var list_group: ArrayList<GroupModel> = ArrayList(),
+    var denahSpan: Int = 1,
     var kodeKelas: String? = null
 ) : Parcelable {
 

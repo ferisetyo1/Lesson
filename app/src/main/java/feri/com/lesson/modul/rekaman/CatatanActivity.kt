@@ -41,7 +41,7 @@ class CatatanActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         time_milis = intent.getLongExtra("waktu", 0)
-        waktu.text = Helpers.longtoDate(time_milis!!)
+        waktu.text = Helpers.longtoTimeFormat(time_milis!!)
 
         val adapter = ArrayAdapter<String>(
             this,
@@ -86,12 +86,10 @@ class CatatanActivity : AppCompatActivity(), View.OnClickListener {
         bottomSheet.btn_foto.setOnClickListener {
             dispatchTakePictureIntent()
             dialog.dismiss()
-            true
         }
         bottomSheet.btn_video.setOnClickListener {
             dispatchTakeVideoIntent()
             dialog.dismiss()
-            true
         }
         dialog.setContentView(bottomSheet)
         dialog.show()
@@ -171,15 +169,15 @@ class CatatanActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode !== Activity.RESULT_CANCELED) {
+        if (!resultCode.equals(Activity.RESULT_CANCELED)) {
             extralayout.visibility = View.VISIBLE
-            if (requestCode === const.REQUEST_IMAGE_CAPTURE) {
+            if (requestCode.equals(const.REQUEST_IMAGE_CAPTURE)) {
                 val myBitmap = BitmapFactory.decodeFile(currentpath)
                 pv_foto.setImageBitmap(myBitmap)
                 pv_foto.rotation = -90f
                 pv_video.visibility = View.GONE
                 pv_foto.visibility = View.VISIBLE
-            } else if (requestCode === const.REQUEST_VIDEO_CAPTURE) {
+            } else if (requestCode.equals(const.REQUEST_VIDEO_CAPTURE)) {
                 pv_video.setVideoPath(currentpath)
                 pv_video.start()
                 pv_foto.visibility = View.GONE

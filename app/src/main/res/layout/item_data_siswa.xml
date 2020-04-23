@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/namaSiswa"
-        tools:textColor="@color/colorSkyBlue1" />
+        tools:textColor="@color/colorBlueLab" />
 
     <EditText
         android:id="@+id/namaSiswa"
@@ -32,7 +32,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -8,13 +8,11 @@ import kotlinx.android.parcel.Parcelize
 @Keep
 @IgnoreExtraProperties
 @Parcelize
-class TempKodeRekamanModel(
-    var idRekaman: String? = null,
-    var idKelas: String?= null,
+class TempKelasModel(
     var idPengajar: String? = null,
-    var idPengamat: String? = null
+    var idKelas: String? = null
 ) : Parcelable {
     override fun toString(): String {
-        return "TempKodeRekamanModel(idRekaman=$idRekaman, idKelas=$idKelas, idPengajar=$idPengajar, idPengamat=$idPengamat)"
+        return "TempKelasModel(idPengajar=$idPengajar, idKelas=$idKelas)"
     }
 }

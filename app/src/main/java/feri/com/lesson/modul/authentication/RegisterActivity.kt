@@ -1,11 +1,16 @@
 package feri.com.lesson.modul.authentication
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import feri.com.lesson.MainActivity
@@ -32,7 +37,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         //listener
         btn_register.setOnClickListener(this)
-        tv_loginlink.setOnClickListener(this)
+        btn_login.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -40,7 +45,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_register -> {
                 proses_register()
             }
-            R.id.tv_loginlink -> {
+            R.id.btn_login -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
@@ -52,34 +57,39 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
+        val builderdialog = AlertDialog.Builder(this)
+        builderdialog.setCancelable(false)
+        builderdialog.setView(R.layout.progress)
+        val dialog = builderdialog.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
         firebaseAuth.createUserWithEmailAndPassword(
             et_email.text?.trim().toString(),
             et_password.text?.trim().toString()
         ).addOnCompleteListener {
+            dialog.dismiss()
             if (it.isSuccessful) {
                 var curUser = firebaseAuth.currentUser
                 db_reff.child(curUser?.uid.toString()).setValue(
                     UserModel(
                         curUser?.uid.toString(),
-                        et_nama.text?.trim().toString().toLowerCase(),
-                        et_email.text?.trim().toString().toLowerCase(),
-                        "",
+                        et_nama.text.trim().toString().trim().toLowerCase(),
+                        et_email.text.toString().trim().toLowerCase(),
+                        et_instansi.text.toString().trim().toLowerCase(),
                         ""
                     )
                 ).addOnCompleteListener {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
-                }.addOnFailureListener {
-                    Snackbar.make(regLayout, it.localizedMessage.toString(), Snackbar.LENGTH_LONG)
-                        .show()
                 }
             } else {
-                Snackbar.make(regLayout, it.exception?.localizedMessage.toString(), Snackbar.LENGTH_LONG)
-                    .show()
+                Toast.makeText(this,it.exception?.localizedMessage,Toast.LENGTH_LONG).show()
             }
         }.addOnFailureListener {
-            Snackbar.make(regLayout, it.message.toString(), Snackbar.LENGTH_LONG)
-                .show()
+            dialog.dismiss()
+            if (it is FirebaseAuthException) print(it.errorCode)
+            Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
         }
 
     }

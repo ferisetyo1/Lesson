@@ -1,14 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modul.menuSetting.SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Pengaturan"
+            android:textColor="@color/colorBlueLab"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="LESON"
+            android:textColor="@color/colorBlueLab"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+        <TextView
+            android:id="@+id/textView61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lesson Study Observation Note"
+            android:textColor="@color/colorBlueLab"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/textView69"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView61">
+
+            <TextView
+                android:id="@+id/tv_akun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="Akun"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/tv_kelas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_book"
+                android:drawablePadding="8dp"
+                android:text="Kelas"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/tv_rekaman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_list_music"
+                android:drawablePadding="8dp"
+                android:text="Data Rekaman"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/tv_notifikasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_notifications"
+                android:drawablePadding="8dp"
+                android:text="Notifikasi"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/tv_bantuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_help_outline_black_24dp"
+                android:drawablePadding="8dp"
+                android:text="Bantuan"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@android:drawable/ic_lock_power_off"
+                android:drawablePadding="8dp"
+                android:text="Keluar"
+                android:textColor="@color/colorBlueLab"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorBlueLab"
+                app:layout_constraintBottom_toTopOf="@+id/textView69"
+                app:layout_constraintStart_toStartOf="@+id/tv_bantuan"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bantuan" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fakultas Ilmu Komputer"
+            android:textColor="@color/colorBlueLab"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView63"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laboratorium Teknologi Pembelajaran"
+            android:textColor="@color/colorBlueLab"
+            app:layout_constraintBottom_toTopOf="@+id/textView68"
+            app:layout_constraintEnd_toEndOf="@+id/textView68"
+            app:layout_constraintStart_toStartOf="@+id/textView68" />
+
+        <TextView
+            android:id="@+id/textView63"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Universutas Brawijaya"
+            android:textColor="@color/colorBlueLab"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView68"
+            app:layout_constraintStart_toStartOf="@+id/textView68" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

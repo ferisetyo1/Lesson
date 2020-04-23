@@ -1,17 +1,21 @@
 package feri.com.lesson.modul.rekaman
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import feri.com.lesson.MainActivity
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.RekamanModel
+import feri.com.lesson.model.TempRekamanModel
 import feri.com.lesson.modul.detailRekaman.DetailRekamanActivity
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_berhasil_rekam.*
@@ -38,7 +42,7 @@ class BerhasilRekamActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
 
-        tv_judul.text="${dataRekaman.judul} berhasil disimpan"
+        tv_judul.text = "${dataRekaman.judul} berhasil disimpan"
         val fileAudio = Uri.fromFile(File(dataRekaman.suaraUrl))
         val audioReff = firebaseStorage
             .getReference(const.fileRekaman)
@@ -47,14 +51,14 @@ class BerhasilRekamActivity : AppCompatActivity() {
             .child(fileAudio.lastPathSegment!!)
         var uploaded = 1
         var totalUploaded = dataRekaman.listCatatan.size + 1
-        tv_simpan.text="Menyimpan $uploaded/$totalUploaded data..."
+        tv_simpan.text = "Menyimpan $uploaded/$totalUploaded data..."
         seekBar.progress = 0
         audioReff
             .putFile(fileAudio)
             .addOnProgressListener {
                 var progress: Double = (100.0 * it.bytesTransferred) / it.totalByteCount
                 seekBar.progress = progress.toInt()
-                tv_progress.text="${progress.toInt()}/100"
+                tv_progress.text = "${progress.toInt()}/100"
             }
             .addOnSuccessListener {
                 seekBar.progress = 0
@@ -67,6 +71,10 @@ class BerhasilRekamActivity : AppCompatActivity() {
                         .child(dataRekaman.id!!)
                     dbreff.setValue(dataRekaman)
                         .addOnCompleteListener {
+                            if (dataRekaman.listCatatan.size == 0) {
+                                uploadlayout.visibility = View.GONE
+                                default_layout.visibility = View.VISIBLE
+                            }
                             (0..dataRekaman.listCatatan.size - 1).forEach {
                                 val posisi = it
                                 var catatan = dataRekaman.listCatatan.get(it)
@@ -85,7 +93,7 @@ class BerhasilRekamActivity : AppCompatActivity() {
                                             var progress: Double =
                                                 (100.0 * it.bytesTransferred) / it.totalByteCount
                                             seekBar.progress = progress.toInt()
-                                            tv_progress.text="${progress.toInt()}/100"
+                                            tv_progress.text = "${progress.toInt()}/100"
                                         }.addOnSuccessListener {
                                             catatanReff.downloadUrl.addOnCompleteListener {
                                                 val url = it.result
@@ -105,10 +113,54 @@ class BerhasilRekamActivity : AppCompatActivity() {
                                 }
                             }
                         }
+                    firebaseDatabase.getReference(const.REKAMAN_CODE)
+                        .child(dataRekaman.kodeRekaman!!)
+                        .setValue(
+                            TempRekamanModel(
+                                dataRekaman.id,
+                                dataKelas.id,
+                                dataRekaman.idPengajar,
+                                dataRekaman.idPengamat
+                            )
+                        )
                 }
             }
         btn_cekRekaman.setOnClickListener {
-            startActivity(Intent(this,DetailRekamanActivity::class.java))
+            val builderdialog = AlertDialog.Builder(this)
+            builderdialog.setCancelable(false)
+            builderdialog.setView(R.layout.progress)
+            val dialog = builderdialog.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+            firebaseDatabase.getReference(const.REKAMAN_DB)
+                .child(dataRekaman.idPengamat!!)
+                .child(dataRekaman.id!!)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        p0.toException().printStackTrace()
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        dialog.dismiss()
+                        val data = p0.getValue(RekamanModel::class.java)
+                        startActivity(
+                            Intent(
+                                this@BerhasilRekamActivity,
+                                DetailRekamanActivity::class.java
+                            ).putExtra("dataRekaman", data)
+                        )
+                    }
+
+                })
+        }
+        btn_listRekaman.setOnClickListener {
+            startActivity(
+                Intent(this, MainActivity::class.java).putExtra(
+                    "specialSelect",
+                    R.id.daftarRekamanFragment
+                )
+            )
+            finish()
         }
     }
 }

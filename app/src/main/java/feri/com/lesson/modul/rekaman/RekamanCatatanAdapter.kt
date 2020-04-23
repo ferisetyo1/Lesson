@@ -18,7 +18,7 @@ class RekamanCatatanAdapter(val context: Context, var list: ArrayList<CatatanMod
             itemView.tipe_kegiatan.text =
                 itemView.resources.getStringArray(R.array.tipe_kegiatan).get(get.tipe!!)
             itemView.urutan.text=(position+1).toString()
-            itemView.time.text=Helpers.longtoDate(get.waktu!!)
+            itemView.time.text=Helpers.longtoTimeFormat(get.waktu!!)
             itemView.judul_catatan.text=get.judul
         }
     }

@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import feri.com.lesson.R
 import feri.com.lesson.model.CatatanModel
@@ -67,10 +69,10 @@ class RekamanActivity : AppCompatActivity(), View.OnClickListener {
 
         myhandler = Handler()
 
-        judulRekaman.text=dataRekaman.judul
+        judulRekaman.text = dataRekaman.judul
         chronometer.setText("00:00:00")
         chronometer.setOnChronometerTickListener {
-            it.text=Helpers.longtoDate(SystemClock.elapsedRealtime()-it.base)
+            it.text = Helpers.longtoTimeFormat(SystemClock.elapsedRealtime() - it.base)
         }
         btn_create_catatan.setOnClickListener(this)
         btn_record.setOnClickListener(this)
@@ -107,21 +109,58 @@ class RekamanActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    var pausedtime: Long = 0;
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             R.id.btn_record -> {
-                onRecord(startRecording!!)
+                onRecord()
                 when (startRecording) {
                     true -> {
-                        chronometer!!.base = SystemClock.elapsedRealtime()
+                        chronometer!!.base = SystemClock.elapsedRealtime() + pausedtime
                         chronometer!!.start()
                         //set btn_record berhenti
                         btn_create_catatan.isEnabled = true
                         btn_selesai.isEnabled = true
+                        btn_record.background=ContextCompat.getDrawable(this,R.drawable.btn_circle_green)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            btn_record.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this,
+                                    R.drawable.ic_pause_black_24dp
+                                )
+                            )
+                        } else {
+                            btn_record.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this,
+                                    R.drawable.ic_stop_black_24dp
+                                )
+                            )
+                        }
                     }
                     false -> {
                         chronometer!!.stop()
-                        btn_create_catatan.isEnabled = false
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            pausedtime = chronometer.base - SystemClock.elapsedRealtime()
+                            recorder?.pause()
+                            btn_record.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this,
+                                    R.drawable.ic_play_arrow_black_24dp
+                                )
+                            )
+                            btn_record.background=ContextCompat.getDrawable(this,R.drawable.btn_circle_yellow)
+                        }else{
+                            myhandler.removeCallbacks(runnable)
+                            stopRecording()
+                            btn_record.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this,
+                                    R.drawable.ic_fiber_manual_record_black_24dp
+                                )
+                            )
+                            btn_record.background=ContextCompat.getDrawable(this,R.drawable.btn_circle_red)
+                        }
                     }
                 }
                 startRecording = !startRecording!!
@@ -168,16 +207,19 @@ class RekamanActivity : AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
-    private fun onRecord(start: Boolean) = if (start) {
-        runnable = object : Runnable {
-            override fun run() {
-                startRecording()
+    private fun onRecord() {
+        if (pausedtime == 0L) {
+            runnable = object : Runnable {
+                override fun run() {
+                    startRecording()
+                }
+            }
+            myhandler.postDelayed(runnable, 1000)
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                recorder?.resume()
             }
         }
-        myhandler.postDelayed(runnable, 1000)
-    } else {
-        myhandler.removeCallbacks(runnable)
-        stopRecording()
     }
 
     private fun startRecording() {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Apakah kelas telah selesai untuk diobservasi?"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlueLab"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_ya"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="64dp"
+            android:background="@drawable/btn_circle_yellow"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_check_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/btn_batal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_circle_borderd_yellow"
+            android:tint="@color/colorYellowLab"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

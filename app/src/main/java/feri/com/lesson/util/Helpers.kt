@@ -1,6 +1,10 @@
 package feri.com.lesson.util
 
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.net.URL
 import java.util.concurrent.TimeUnit
+
 
 object Helpers {
 
@@ -13,7 +17,7 @@ object Helpers {
                 bulan.toString().equals("null") ||
                 tahun.toString().equals("null") ||
                 tanggal!! > 31 ||
-                bulan!! >12
+                bulan!! > 12
             ) {
                 return false
             } else {
@@ -24,7 +28,7 @@ object Helpers {
         }
     }
 
-    public fun longtoDate(millis: Long):String{
+    fun longtoTimeFormat(millis: Long): String {
         return String.format(
             "%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
             TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
@@ -32,4 +36,15 @@ object Helpers {
         )
     }
 
+    @Throws(IOException::class)
+    fun getImage(url: URL): ByteArray? {
+        val baos = ByteArrayOutputStream()
+        val `is` = url.openStream()
+        val b = ByteArray(4096)
+        var n: Int
+        while (`is`.read(b).also { n = it } > -1) {
+            baos.write(b, 0, n)
+        }
+        return baos.toByteArray()
+    }
 }

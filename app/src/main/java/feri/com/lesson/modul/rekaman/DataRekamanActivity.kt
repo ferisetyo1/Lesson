@@ -1,6 +1,7 @@
 package feri.com.lesson.modul.rekaman
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,11 @@ import feri.com.lesson.util.Helpers
 import feri.com.lesson.util.KeyGen
 import kotlinx.android.synthetic.main.activity_data_rekaman.*
 import kotlinx.android.synthetic.main.activity_data_rekaman.tanggalObservasi
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DataRekamanActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -24,6 +30,10 @@ class DataRekamanActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_back.setOnClickListener(this)
         btn_lanjut.setOnClickListener(this)
+
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = formatter.format(Date())
+        tanggalObservasi.setText(date)
     }
 
     override fun onClick(p0: View?) {
@@ -41,9 +51,9 @@ class DataRekamanActivity : AppCompatActivity(), View.OnClickListener {
         if (FieldisError()) {
             return
         }
-        var dataKelas=intent.getParcelableExtra<KelasModel>("dataKelas")
+        var dataKelas = intent.getParcelableExtra<KelasModel>("dataKelas")
         var rekamanModel = RekamanModel(
-            KeyGen.create("rekaman","_",6),
+            KeyGen.create("rekaman", "_", 6),
             dataKelas.id,
             dataKelas.idPengajar,
             FirebaseAuth.getInstance().currentUser?.uid,
@@ -53,9 +63,11 @@ class DataRekamanActivity : AppCompatActivity(), View.OnClickListener {
             ArrayList(),
             ""
         )
-        startActivity(Intent(this,PreviewDataRekamanActivity::class.java)
-            .putExtra("dataKelas",dataKelas)
-            .putExtra("dataRekaman",rekamanModel))
+        startActivity(
+            Intent(this, PreviewDataRekamanActivity::class.java)
+                .putExtra("dataKelas", dataKelas)
+                .putExtra("dataRekaman", rekamanModel)
+        )
     }
 
     private fun FieldisError(): Boolean {
@@ -69,11 +81,6 @@ class DataRekamanActivity : AppCompatActivity(), View.OnClickListener {
         if (tanggalObservasi.text.isNullOrEmpty()) {
             tanggalObservasi.requestFocus()
             tanggalObservasi.setError(getString(R.string.errorFieldKosong))
-            return true
-        }
-
-        if (!Helpers.dateCheckisTrueDate(tanggalObservasi.text.toString())) {
-            Log.d("test", "bukan tanggal")
             return true
         }
         return false

@@ -23,6 +23,7 @@
     <string name="errorPaswordTidaksama">Password harus sama</string>
     <string name="DataKelas">Tambah Kelas</string>
     <string name="btn_simpanDenah">Simpan Denah Kelas</string>
+    <string name="kepanjangan_leson">Lesson Study Observation Note</string>
     <string-array name="modelKelasArray">
         <item>Pilih Denah Kelas</item>
         <item>Group Discussion</item>

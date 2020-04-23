@@ -9,12 +9,13 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@color/colorSkyBlue4"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBlueLab"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tv_title9">
 
     </LinearLayout>
 
@@ -23,9 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Preview Data Kelas"
+        android:text="Review Data"
         android:textAllCaps="true"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +41,7 @@
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:contentDescription="TODO"
-        android:tint="@color/colorSkyBlue1"
+        android:tint="@color/colorBlueLab"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back" />
@@ -49,10 +50,11 @@
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="@dimen/dimens_48"
         android:layout_marginTop="32dp"
         android:text="Judul Rekaman"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title9" />
 
@@ -60,8 +62,9 @@
         android:id="@+id/judulRekaman"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView31"
@@ -71,10 +74,11 @@
         android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginStart="@dimen/dimens_48"
         android:layout_marginTop="32dp"
         android:text="Mata Pelajaran"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueFilkom"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -83,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView37"
         app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -94,7 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Tanggal Observasi"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueFilkom"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/mataPelajaran"
         app:layout_constraintTop_toBottomOf="@+id/mataPelajaran" />
 
@@ -103,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView41"
         app:layout_constraintTop_toBottomOf="@+id/textView41" />
@@ -114,7 +119,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Lokasi"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueFilkom"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tanggalObservasi"
         app:layout_constraintTop_toBottomOf="@+id/tanggalObservasi" />
 
@@ -123,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView43"
         app:layout_constraintTop_toBottomOf="@+id/textView43" />
@@ -134,7 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Pengajar"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueFilkom"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/lokasi"
         app:layout_constraintTop_toBottomOf="@+id/lokasi" />
 
@@ -143,7 +150,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
@@ -152,8 +160,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Observer"
-        android:textColor="@color/colorSkyBlue1"
+        android:text="Pengamat"
+        android:textColor="@color/colorBlueFilkom"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/pengajar"
         app:layout_constraintTop_toBottomOf="@+id/pengajar" />
 
@@ -162,7 +171,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView47"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
@@ -171,7 +180,7 @@
         android:id="@+id/btn_mulai"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorSkyBlue1"
+        android:background="@color/colorBlueLab"
         android:text="Mulai Rekaman"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

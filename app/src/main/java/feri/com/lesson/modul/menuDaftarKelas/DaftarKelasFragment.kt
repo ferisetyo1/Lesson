@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
+import feri.com.lesson.modul.detailKelas.DetailKelasActivity
 import feri.com.lesson.modul.kelas.DataKelasActivity
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.fragment_daftar_kelas.*
@@ -96,6 +97,9 @@ class DaftarKelasFragment : Fragment(), View.OnClickListener, TextWatcher {
         ) {
             Log.d("print", model.toString())
             holder.bind(model)
+            holder.lyt_container.setOnClickListener {
+                startActivity(Intent(activity,DetailKelasActivity::class.java).putExtra("dataKelas",model))
+            }
         }
 
         override fun onDataChanged() {

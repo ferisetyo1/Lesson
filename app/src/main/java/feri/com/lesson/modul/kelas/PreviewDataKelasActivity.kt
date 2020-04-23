@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.google.firebase.database.*
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
-import feri.com.lesson.model.TempKodeKelasModel
+import feri.com.lesson.model.TempKelasModel
 import feri.com.lesson.model.UserModel
 import feri.com.lesson.util.KeyGen
 import feri.com.lesson.util.const
@@ -54,7 +54,7 @@ class PreviewDataKelasActivity : AppCompatActivity() {
 
             })
 
-        db_reff_listkode.child(dataKelas.kodeKelas!!).setValue(TempKodeKelasModel(dataKelas.idPengajar,dataKelas.id))
+        db_reff_listkode.child(dataKelas.kodeKelas!!).setValue(TempKelasModel(dataKelas.idPengajar,dataKelas.id))
 
         btn_buatKode.setOnClickListener {
             db_reff_kelas.child(dataKelas.idPengajar!!).child(dataKelas.id!!).setValue(dataKelas)

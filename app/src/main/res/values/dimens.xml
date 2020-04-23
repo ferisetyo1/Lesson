@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="outside_startend">64dp</dimen>
-    <dimen name="aftertitle">64dp</dimen>
+    <dimen name="dimens_40">40dp</dimen>
+    <dimen name="dimens_48">48dp</dimen>
+    <dimen name="dimens_64">64dp</dimen>
+    <dimen name="dimens_72">72dp</dimen>
+    <dimen name="dimens_80">80dp</dimen>
+    <dimen name="dimens_88">88dp</dimen>
+    <dimen name="dimens_96">96dp</dimen>
+    <dimen name="dimens_104">104dp</dimen>
 </resources>

@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:contentDescription="TODO"
-        android:tint="@color/colorSkyBlue1"
+        android:tint="@color/colorBlueLab"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back" />
@@ -27,7 +27,7 @@
         android:layout_marginTop="32dp"
         android:text="Denah Kelas"
         android:textAllCaps="true"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +38,8 @@
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="@dimen/outside_startend"
-        android:layout_marginEnd="@dimen/outside_startend"
+        android:layout_marginStart="@dimen/dimens_48"
+        android:layout_marginEnd="@dimen/dimens_48"
         android:background="@drawable/spinner_bordered"
         android:dropDownWidth="match_parent"
         android:entries="@array/modelKelasArray"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Model Kelas"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/tv_title5" />
 
@@ -64,7 +64,7 @@
         android:id="@+id/btn_simpan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorSkyBlue1"
+        android:background="@color/colorBlueLab"
         android:text="@string/btn_simpanDenah"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,18 +75,16 @@
         android:id="@+id/et_span"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="@dimen/outside_startend"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/outside_startend"
         android:background="@drawable/et_bordered"
         android:ems="10"
         android:hint="Span"
         android:inputType="number"
         android:text="3"
-        android:textColor="@color/colorSkyBlue1"
-        android:textColorHint="@color/colorSkyBlue3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorBlueLab"
+        android:textColorHint="@color/colorBlueLab_50"
+        app:layout_constraintEnd_toEndOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <HorizontalScrollView
@@ -97,34 +95,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_span">
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:orientation="vertical">-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/textView16"-->
-        <!--                android:layout_width="250dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_gravity="center_horizontal"-->
-        <!--                android:layout_marginStart="@dimen/outside_startend"-->
-        <!--                android:layout_marginTop="16dp"-->
-        <!--                android:layout_marginEnd="@dimen/outside_startend"-->
-        <!--                android:background="@drawable/tv_bordercorner"-->
-        <!--                android:gravity="center"-->
-        <!--                android:text="Papan Kelas"-->
-        <!--                android:textColor="@color/colorSkyBlue1"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/spinner" />-->
-
-        <!--            <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:id="@+id/rv_denah"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_gravity="center" />-->
-        <!--        </LinearLayout>-->
 
         <FrameLayout
             android:id="@+id/fragmentDenah"
@@ -138,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Span"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintBottom_toTopOf="@+id/et_span"
         app:layout_constraintStart_toStartOf="@+id/et_span" />
 

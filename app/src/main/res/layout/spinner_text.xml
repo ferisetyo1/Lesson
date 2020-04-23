@@ -5,5 +5,5 @@
     android:layout_height="wrap_content"
     android:textSize="18sp"
     android:gravity="left"
-    android:textColor="@color/colorSkyBlue1"
+    android:textColor="@color/colorBlueLab"
     />

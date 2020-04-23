@@ -2,10 +2,14 @@ package feri.com.lesson.modul.authentication
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
@@ -70,28 +74,45 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
+        val builderdialog = AlertDialog.Builder(this)
+        builderdialog.setCancelable(false)
+        builderdialog.setView(R.layout.progress)
+        val dialog = builderdialog.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
         firebaseAuth.signInWithEmailAndPassword(
             et_email.text?.trim().toString(),
             et_password.text?.trim().toString()
         ).addOnCompleteListener {
+            dialog.dismiss()
             if (it.isSuccessful) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }.addOnFailureListener {
-            if (it is FirebaseAuthException){
+            dialog.dismiss()
+            if (it is FirebaseAuthException) {
                 if (it.errorCode.equals("ERROR_USER_NOT_FOUND")) {
-                    SBCustom.getSnackbar(loginlayout,resources.getText(R.string.errorUserNotFound).toString()).show()
+                    Toast.makeText(
+                        this,
+                        resources.getText(R.string.errorUserNotFound).toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
                     return@addOnFailureListener
                 } else if (it.errorCode.equals("ERROR_WRONG_PASSWORD")) {
-                    SBCustom.getSnackbar(loginlayout,resources.getText(R.string.errorPasswordSalah).toString()).show()
+                    Toast.makeText(
+                        this,
+                        resources.getText(R.string.errorPasswordSalah).toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
                     return@addOnFailureListener
                 } else {
-                    SBCustom.getSnackbar(loginlayout,it.localizedMessage.toString()).show()
+                    Toast.makeText(this, it.localizedMessage?.toString(), Toast.LENGTH_LONG).show()
                     return@addOnFailureListener
                 }
-            }else{
-                SBCustom.getSnackbar(loginlayout,it.localizedMessage.toString()).show()
+            } else {
+                Toast.makeText(this, it.localizedMessage?.toString(), Toast.LENGTH_LONG).show()
                 return@addOnFailureListener
             }
         }

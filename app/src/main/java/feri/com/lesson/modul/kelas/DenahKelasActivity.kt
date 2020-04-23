@@ -94,6 +94,7 @@ class DenahKelasActivity : AppCompatActivity() {
         if (denahhh.isVisible) {
             var data_intent = Intent(this, PreviewDataKelasActivity::class.java)
             dataKelas?.list_group = dataGroup
+            dataKelas?.denahSpan=et_span.text.toString().toInt()
             data_intent.putExtra("dataKelas", dataKelas)
             startActivity(data_intent)
         }

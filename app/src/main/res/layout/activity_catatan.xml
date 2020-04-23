@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="00:00:00"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +22,11 @@
         android:id="@+id/textView46"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginStart="@dimen/dimens_48"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/outside_startend"
+        android:layout_marginEnd="@dimen/dimens_48"
         android:text="Judul Catatan"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/waktu" />
@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/et_bordercorner"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView46"
         app:layout_constraintStart_toStartOf="@+id/textView46"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Tipe Kegiatan"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintEnd_toEndOf="@+id/judulCatatan"
         app:layout_constraintStart_toStartOf="@+id/judulCatatan"
         app:layout_constraintTop_toBottomOf="@+id/judulCatatan" />
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Deskripsi Kegiatan"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintEnd_toEndOf="@+id/spinnerKegiatan"
         app:layout_constraintStart_toStartOf="@+id/spinnerKegiatan"
         app:layout_constraintTop_toBottomOf="@+id/spinnerKegiatan" />
@@ -80,7 +80,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/et_bordercorner"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView51"
         app:layout_constraintStart_toStartOf="@+id/textView51"
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Foto/Video Kegiatan"
-            android:textColor="@color/colorSkyBlue1" />
+            android:textColor="@color/colorBlueLab" />
 
         <ImageView
             android:id="@+id/pv_foto"
@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_outlinecorner"
         android:text="Batal"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintBottom_toBottomOf="@+id/btn_tambah"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -156,7 +156,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/btn_circle_borderd"
         android:scaleType="centerInside"
-        android:tint="@color/colorSkyBlue1"
+        android:tint="@color/colorBlueLab"
         app:layout_constraintEnd_toEndOf="@+id/deskripsiCatatan"
         app:layout_constraintTop_toBottomOf="@+id/deskripsiCatatan"
         app:srcCompat="@drawable/ic_camera_alt_black_24dp" />

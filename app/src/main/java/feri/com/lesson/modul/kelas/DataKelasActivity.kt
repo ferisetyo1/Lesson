@@ -52,10 +52,11 @@ class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
             "dataKelas", KelasModel(
                 KeyGen.create("kelas", "_",16),
                 firebaseAuth.uid.toString(),
-                et_namakelas.text.trim().toString(),
-                et_namasekolah.text.trim().toString(),
-                et_pelajaran.text.trim().toString(),
+                et_namakelas.text.toString().toLowerCase().trim(),
+                et_namasekolah.text.toString().toLowerCase().trim(),
+                et_pelajaran.text.toString().toLowerCase().trim(),
                 ArrayList<SiswaModel>(), ArrayList<GroupModel>(),
+                1,
                 null
             )
         )

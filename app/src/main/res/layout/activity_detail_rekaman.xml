@@ -6,4 +6,175 @@
     android:layout_height="match_parent"
     tools:context=".modul.detailRekaman.DetailRekamanActivity">
 
+    <TextView
+        android:id="@+id/tv_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="REKAMAN TEST"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBlueLab"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorBlueLab"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout11"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tittle">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_circle_yellow"
+            android:scaleType="center"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_person" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/namaPengajar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Budi Sudarsono"
+                android:textColor="@color/colorBlueLab"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/namaPelajaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Matematika"
+                android:textColor="@color/colorBlueLab" />
+
+            <TextView
+                android:id="@+id/namaSekolah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SMAN 2 Malang"
+                android:textColor="@color/colorBlueLab" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_opsi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/btn_circle_yellow"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_tune_black_24dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView67"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="List Event Kelas"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlueLab"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout11"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout11"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout12"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@color/colorBlueLab"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/time_suara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="00:00:00"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_pause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_circle_white"
+                android:scaleType="center"
+                android:tint="@color/colorYellowLab"
+                app:srcCompat="@drawable/ic_pause_black_24dp" />
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_circle_yellow"
+                android:scaleType="fitXY"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+            <ImageView
+                android:id="@+id/btn_stop"
+                android:layout_width="@dimen/dimens_40"
+                android:layout_height="@dimen/dimens_40"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_circle_white"
+                android:scaleType="center"
+                android:tint="@color/colorYellowLab"
+                app:srcCompat="@drawable/ic_stop_black_24dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_catatan_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView67"
+        tools:listitem="@layout/item_catatan_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,9 +8,10 @@ import kotlinx.android.synthetic.main.item_daftar_kelas.view.*
 
 class DaftarKelasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var namaKelas = itemView.namaKelas
-    var namaPelajaran = itemView.tanggalObservasi
+    var namaPelajaran = itemView.namaPelajaran
     var namaSekolah = itemView.namaSekolah
     var btn_opsi = itemView.btn_opsi
+    var lyt_container=itemView.lyt_container_dk
 
     fun bind(get: KelasModel) {
         Log.d("print", get.toString())

@@ -4,25 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:tint="@color/colorSkyBlue1"
+        android:tint="@color/colorBlueLab"
         app:srcCompat="@drawable/ic_check_black_24dp" />
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/outside_startend"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/outside_startend"
         android:text="Apakah kelas telah selesai untuk diobservasi?"
         android:textAlignment="center"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -37,16 +36,16 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="64dp"
-            android:background="@drawable/btn_circle_lowcolor"
-            android:tint="@color/colorSkyBlue1"
+            android:background="@drawable/btn_circle_yellow"
+            android:tint="@color/white"
             app:srcCompat="@drawable/ic_check_black_24dp" />
 
         <ImageButton
             android:id="@+id/btn_batal"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/btn_circle_borderd"
-            android:tint="@color/colorSkyBlue1"
+            android:background="@drawable/btn_circle_borderd_yellow"
+            android:tint="@color/colorYellowLab"
             app:srcCompat="@drawable/ic_close_black_24dp" />
 
     </LinearLayout>

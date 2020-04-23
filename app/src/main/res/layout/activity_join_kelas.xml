@@ -13,7 +13,7 @@
         android:layout_marginTop="32dp"
         android:text="Input Kode Kelas"
         android:textAllCaps="true"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="Masukkan Kode Kelas"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Masukkan kode kelas pada form ini"
-        android:textColor="@color/colorSkyBlue1"
+        android:textColor="@color/colorBlueLab"
         app:layout_constraintEnd_toEndOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -48,15 +48,15 @@
         android:id="@+id/findKelas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginStart="@dimen/dimens_64"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/outside_startend"
+        android:layout_marginEnd="@dimen/dimens_64"
         android:background="@drawable/et_bordercorner"
         android:ems="10"
         android:hint="Masukkan kode kelas"
         android:inputType="textPersonName"
-        android:textColor="@color/colorSkyBlue1"
-        android:textColorHint="@color/colorSkyBlue3"
+        android:textColor="@color/colorBlueLab"
+        android:textColorHint="@color/colorBlueLab_50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -65,7 +65,7 @@
         android:id="@+id/btn_join"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorSkyBlue1"
+        android:background="@color/colorBlueLab"
         android:text="Join Kelas"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,9 +75,9 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/outside_startend"
+        android:layout_marginStart="@dimen/dimens_64"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="@dimen/outside_startend"
+        android:layout_marginEnd="@dimen/dimens_64"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_join"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pengajar"
-                    android:textColor="@color/colorSkyBlue1" />
+                    android:textColor="@color/colorBlueLab" />
 
                 <TextView
                     android:id="@+id/namaPengajar"
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:text="TextView"
-                    android:textColor="@color/colorSkyBlue1"
+                    android:textColor="@color/colorBlueLab"
                     android:textSize="18sp" />
 
                 <TextView
@@ -117,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pelajaran"
-                    android:textColor="@color/colorSkyBlue1" />
+                    android:textColor="@color/colorBlueLab" />
 
                 <TextView
                     android:id="@+id/tanggalObservasi"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:text="namaPelajaran"
-                    android:textColor="@color/colorSkyBlue1"
+                    android:textColor="@color/colorBlueLab"
                     android:textSize="18sp" />
 
                 <TextView
@@ -133,28 +133,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jumlah Siswa"
-                    android:textColor="@color/colorSkyBlue1" />
+                    android:textColor="@color/colorBlueLab" />
 
                 <TextView
                     android:id="@+id/jmlSiswa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/colorBlueLab" />
 
                 <TextView
                     android:id="@+id/textView33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Denah Kelas"
-                    android:textColor="@color/colorSkyBlue1" />
+                    android:textColor="@color/colorBlueLab" />
 
                 <TextView
                     android:id="@+id/denahtype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Classroom" />
+                    android:text="Classroom"
+                    android:textColor="@color/colorBlueLab" />
             </LinearLayout>
 
             <LinearLayout
@@ -170,8 +172,20 @@
                     android:id="@+id/textView40"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Data tidak ditemukan" />
+                    android:text="Data tidak ditemukan"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:onClick="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>

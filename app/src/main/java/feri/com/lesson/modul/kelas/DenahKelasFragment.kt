@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_denah_kelas.*
  */
 class DenahKelasFragment() : Fragment() {
 
+    private var alreadyData = false
     private var model: Int = 0
     private var size: Int = 0
     private var span: Int = 0
@@ -25,6 +26,12 @@ class DenahKelasFragment() : Fragment() {
     constructor(model: Int, size: Int, span: Int) : this() {
         this.model = model
         this.size = size
+        this.span = span
+    }
+
+    constructor(alreadyData: Boolean, dataGroupModel: ArrayList<GroupModel>, span: Int) : this() {
+        this.alreadyData = alreadyData
+        this.dataGroupModel = dataGroupModel
         this.span = span
     }
 
@@ -38,17 +45,19 @@ class DenahKelasFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataGroupModel = when (model) {
-            1 -> generate_group_model(size, span)
-            else -> generate_classroom_model(size, span)
+        if (!alreadyData) {
+            dataGroupModel = when (model) {
+                1 -> generate_group_model(size)
+                else -> generate_classroom_model(size)
+            }
         }
 
         var layoutManager = GridLayoutManager(context, span)
         rv_denah.layoutManager = layoutManager
-        rv_denah.adapter = DenahKelasAdapter(context, dataGroupModel)
+        rv_denah.adapter = DenahKelasAdapter(context, dataGroupModel,alreadyData)
     }
 
-    fun generate_classroom_model(size: Int, span: Int): ArrayList<GroupModel> {
+    fun generate_classroom_model(size: Int): ArrayList<GroupModel> {
         var dataGroup = ArrayList<GroupModel>()
         (1..size / 2).map {
             dataGroup.add(
@@ -73,7 +82,7 @@ class DenahKelasFragment() : Fragment() {
         return dataGroup
     }
 
-    fun generate_group_model(size: Int, span: Int): ArrayList<GroupModel> {
+    fun generate_group_model(size: Int): ArrayList<GroupModel> {
         var dataGroup = ArrayList<GroupModel>()
         if (size % 4 == 0) {
             (1..size / 4).map {

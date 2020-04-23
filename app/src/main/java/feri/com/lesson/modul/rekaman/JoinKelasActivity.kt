@@ -9,7 +9,7 @@ import android.view.View
 import com.google.firebase.database.*
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
-import feri.com.lesson.model.TempKodeKelasModel
+import feri.com.lesson.model.TempKelasModel
 import feri.com.lesson.model.UserModel
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_join_kelas.*
@@ -59,8 +59,10 @@ class JoinKelasActivity : AppCompatActivity() {
 
     private fun tranferDataKelas() {
         if (!curr_kelasModel.id.isNullOrEmpty()) {
-            startActivity(Intent(this,DataRekamanActivity::class.java)
-                .putExtra("dataKelas",curr_kelasModel))
+            startActivity(
+                Intent(this, DataRekamanActivity::class.java)
+                    .putExtra("dataKelas", curr_kelasModel)
+            )
         }
     }
 
@@ -79,7 +81,7 @@ class JoinKelasActivity : AppCompatActivity() {
                     empty_layout.visibility = View.GONE
                 }
                 p0.children.forEach {
-                    var tempKodeClassModel = it.getValue(TempKodeKelasModel::class.java)
+                    var tempKodeClassModel = it.getValue(TempKelasModel::class.java)
                     firebaseDatabase.getReference(const.KELAS_DB)
                         .child(tempKodeClassModel?.idPengajar.toString())
                         .orderByKey()
@@ -109,9 +111,8 @@ class JoinKelasActivity : AppCompatActivity() {
         tanggalObservasi.text = kelasModel?.namaPelajaran
         jmlSiswa.text = kelasModel?.list_siswa?.size.toString()
         denahtype.text = when (kelasModel?.list_group?.get(0)?.tipeGroup) {
-            0 -> resources.getStringArray(R.array.modelKelasArray).get(1)
             1 -> resources.getStringArray(R.array.modelKelasArray).get(2)
-            else -> resources.getStringArray(R.array.modelKelasArray).get(3)
+            else -> resources.getStringArray(R.array.modelKelasArray).get(1)
         }
         firebaseDatabase.getReference(const.USER_DB)
             .orderByKey()
@@ -128,5 +129,9 @@ class JoinKelasActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    fun back(view: View) {
+        onBackPressed()
     }
 }
