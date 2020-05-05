@@ -60,7 +60,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_pengamat"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_marginStart="@dimen/dimens_48"
             android:layout_marginEnd="@dimen/dimens_48"
             tools:listitem="@layout/item_pengamat_kelas" />
@@ -115,6 +115,38 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorlightgrey"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+        <TextView
+            android:id="@+id/txt_ket_tutup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="( kelas masih dibuka )"
+            android:textColor="@color/colorYellowLab"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txt_tutup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginStart="16dp"
+            android:text="Tutup Kelas"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
@@ -122,7 +154,7 @@
         app:layout_constraintBottom_toTopOf="@id/lyt_sudah_diobservasi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14">
 
         <FrameLayout
             android:id="@+id/fragmentDenah"

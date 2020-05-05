@@ -71,110 +71,172 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout8">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:layout_margin="8dp">
 
-            <TextView
-                android:id="@+id/textView56"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Nama"
-                android:textColor="@color/colorBlueLab" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/nama_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bordercorner"
-                android:drawableLeft="@drawable/ic_person"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorBlueLab"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Budi"
-                android:textColor="@color/colorBlueLab" />
+                <TextView
+                    android:id="@+id/textView56"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nama"
+                    android:textColor="@color/colorBlueLab" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Instansi"
-                android:textColor="@color/colorBlueLab" />
+                <EditText
+                    android:id="@+id/nama_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_bordercorner"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorBlueLab"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Budi"
+                    android:textColor="@color/colorBlueLab" />
 
-            <EditText
-                android:id="@+id/instansiUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bordercorner"
-                android:drawableLeft="@drawable/ic_location_on_black_24dp"
-                android:drawablePadding="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Text"
-                android:textColor="@color/colorBlueLab" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Instansi"
+                    android:textColor="@color/colorBlueLab" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textColor="@color/colorBlueLab" />
+                <EditText
+                    android:id="@+id/instansiUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_bordercorner"
+                    android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Text"
+                    android:textColor="@color/colorBlueLab" />
 
-            <EditText
-                android:id="@+id/email_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bordercorner"
-                android:drawableLeft="@drawable/ic_mail"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorBlueLab"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="textPersonName"
-                android:text="text"
-                android:textColor="@color/colorBlueLab" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Email"
+                    android:textColor="@color/colorBlueLab" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textColor="@color/colorBlueLab" />
+                <EditText
+                    android:id="@+id/email_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_bordercorner"
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorBlueLab"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="textPersonName"
+                    android:text="text"
+                    android:textColor="@color/colorBlueLab" />
 
-            <EditText
-                android:id="@+id/password_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bordercorner"
-                android:drawableStart="@drawable/ic_lock"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorBlueLab"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:text="loveumasyta"
-                android:textColor="@color/colorBlueLab" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Konfirmasi Password"
-                android:textColor="@color/colorBlueLab" />
+                <CheckBox
+                    android:id="@+id/ganti_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Ganti password juga" />
 
-            <EditText
-                android:id="@+id/konPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bordercorner"
-                android:drawableStart="@drawable/ic_lock"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorBlueLab"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:text="loveumasyta"
-                android:textColor="@color/colorBlueLab" />
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lyt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Password Lama"
+                        android:textColor="@color/colorBlueLab" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/password_user_lama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/et_bordercorner"
+                            android:drawableStart="@drawable/ic_lock"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@color/colorBlueLab"
+                            android:ems="10"
+                            android:inputType="textPassword"
+                            android:textColor="@color/colorBlueLab" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Password Baru"
+                        android:textColor="@color/colorBlueLab" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/password_user"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/et_bordercorner"
+                            android:drawableStart="@drawable/ic_lock"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@color/colorBlueLab"
+                            android:ems="10"
+                            android:inputType="textPassword"
+                            android:textColor="@color/colorBlueLab" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Konfirmasi Password"
+                        android:textColor="@color/colorBlueLab" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/konPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/et_bordercorner"
+                            android:drawableStart="@drawable/ic_lock"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@color/colorBlueLab"
+                            android:ems="10"
+                            android:inputType="textPassword"
+                            android:textColor="@color/colorBlueLab" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
     <ImageButton

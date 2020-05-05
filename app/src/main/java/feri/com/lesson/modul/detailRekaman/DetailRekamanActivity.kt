@@ -43,6 +43,9 @@ import feri.com.lesson.model.CatatanModel
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.modul.dialog.CatatanDialog
+import feri.com.lesson.modul.dialog.LoadingDialog
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.Helpers
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_detail_rekaman.*
@@ -55,11 +58,12 @@ import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.net.URL
+import kotlin.coroutines.startCoroutine
 
 class DetailRekamanActivity : AppCompatActivity() {
 
     private val STORAGE_CODE: Int = 1001
-    val firebaseDatabase = FirebaseDatabase.getInstance()
+    val firebaseDatabase = DBHelper.getDatabase()
     private var rv_option: FirebaseRecyclerOptions<CatatanModel>? = null
     private var rv_adapter: FirebaseRecyclerAdapter<CatatanModel, DetailRekamanCatatanViewHolder>? =
         null
@@ -84,6 +88,13 @@ class DetailRekamanActivity : AppCompatActivity() {
         val dataRekaman = intent.getParcelableExtra<RekamanModel>("dataRekaman")
         tv_tittle.text = dataRekaman.judul
 
+        val loadingDialog = LoadingDialog()
+
+        btn_back.setOnClickListener {
+            finish()
+        }
+
+        loadingDialog.show(supportFragmentManager, "loading")
         firebaseDatabase.getReference(const.KELAS_DB)
             .child(dataRekaman.idPengajar!!)
             .child(dataRekaman.idKelas!!)
@@ -93,9 +104,13 @@ class DetailRekamanActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val kelas = p0.getValue(KelasModel::class.java)
-                    namaPelajaran.text = kelas?.namaPelajaran
-                    namaSekolah.text = kelas?.namaSekolah
+                    if (p0.exists()) {
+                        val kelas = p0.getValue(KelasModel::class.java)
+                        namaPelajaran.text = kelas?.namaPelajaran
+                        namaSekolah.text = kelas?.namaSekolah
+                    } else {
+                        finish()
+                    }
                 }
 
             })
@@ -108,56 +123,57 @@ class DetailRekamanActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val user = p0.getValue(UserModel::class.java)
-                    namaPengajar.text = user?.nama
+                    loadingDialog.dismiss()
+                    if (p0.exists()) {
+                        val user = p0.getValue(UserModel::class.java)
+                        namaPengajar.text = user?.nama
+
+                        val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
+                            setAudioStreamType(AudioManager.STREAM_MUSIC)
+                            try {
+                                setDataSource(dataRekaman.suaraUrl)
+                                prepare()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+
+                        var runnntime = object : Runnable {
+
+                            override fun run() {
+                                if (mediaPlayer?.isPlaying!!) {
+                                    time_suara.text =
+                                        Helpers.longtoTimeFormat(mediaPlayer.currentPosition.toLong())
+                                    time_suara.postDelayed(this, 1000)
+                                } else {
+                                    time_suara.removeCallbacks(this)
+                                }
+                            }
+                        }
+
+                        btn_play.setOnClickListener {
+                            mediaPlayer?.start()
+                            mediaPlayer?.setOnTimedTextListener { mediaPlayer, timedText ->
+                                time_suara.text = timedText.text
+                            }
+                            time_suara.post(runnntime)
+                        }
+
+                        btn_pause.setOnClickListener {
+                            mediaPlayer?.pause()
+                        }
+
+                        btn_stop.setOnClickListener {
+                            mediaPlayer?.stop()
+                            mediaPlayer?.prepare()
+                            time_suara.text = "00:00:00"
+                        }
+                    } else {
+                        finish()
+                    }
                 }
 
             })
-        btn_back.setOnClickListener {
-            finish()
-        }
-
-        val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
-            setAudioStreamType(AudioManager.STREAM_MUSIC)
-            try {
-                setDataSource(dataRekaman.suaraUrl)
-                prepare()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-
-        var runnntime = object : Runnable {
-
-            override fun run() {
-                if (mediaPlayer?.isPlaying!!) {
-                    time_suara.text = Helpers.longtoTimeFormat(mediaPlayer.currentPosition.toLong())
-                    time_suara.postDelayed(this, 1000)
-                } else {
-                    time_suara.removeCallbacks(this)
-                }
-            }
-        }
-
-
-
-        btn_play.setOnClickListener {
-            mediaPlayer?.start()
-            mediaPlayer?.setOnTimedTextListener { mediaPlayer, timedText ->
-                time_suara.text = timedText.text
-            }
-            time_suara.post(runnntime)
-        }
-
-        btn_pause.setOnClickListener {
-            mediaPlayer?.pause()
-        }
-
-        btn_stop.setOnClickListener {
-            mediaPlayer?.stop()
-            mediaPlayer?.prepare()
-            time_suara.text = "00:00:00"
-        }
 
         btn_opsi.setOnClickListener {
             val dialog = Dialog(this)
@@ -230,13 +246,9 @@ class DetailRekamanActivity : AppCompatActivity() {
     private fun savePdf(obj: RekamanModel?, no_view: Boolean) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        val builderdialog = AlertDialog.Builder(this)
-        builderdialog.setCancelable(false)
-        builderdialog.setView(R.layout.progress)
-        val dialog = builderdialog.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
-        firebaseDatabase.getReference(const.KELAS_DB).child(obj?.idPengajar!!).child(obj?.idKelas!!)
+        val dialog = LoadingDialog()
+        dialog.show(supportFragmentManager, "Loading")
+        firebaseDatabase.getReference(const.KELAS_DB).child(obj?.idPengajar!!).child(obj.idKelas!!)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
@@ -245,7 +257,7 @@ class DetailRekamanActivity : AppCompatActivity() {
                 override fun onDataChange(p0: DataSnapshot) {
                     val objKelas = p0.getValue(KelasModel::class.java)
                     Log.d("objKelas", objKelas.toString())
-                    firebaseDatabase.getReference(const.USER_DB).child(obj?.idPengajar!!)
+                    firebaseDatabase.getReference(const.USER_DB).child(obj.idPengajar!!)
                         .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(p0: DatabaseError) {
                                 p0.toException().printStackTrace()
@@ -367,8 +379,8 @@ class DetailRekamanActivity : AppCompatActivity() {
                                                         if (it.extraUrl!!.contains(".jpg", true)) {
                                                             strCatatan += "Tipe media : Gambar\n" +
                                                                     "Tipe Kegiatan : ${resources.getStringArray(
-                                                                            R.array.tipe_kegiatan
-                                                                        )
+                                                                        R.array.tipe_kegiatan
+                                                                    )
                                                                         .get(it.tipe!!)
                                                                         .toString()}\n" +
                                                                     "Deskripsi : ${it.deskripsi}\n"
@@ -393,8 +405,8 @@ class DetailRekamanActivity : AppCompatActivity() {
                                                         } else {
                                                             strCatatan += "Tipe media : Video\n" +
                                                                     "Tipe Kegiatan : ${resources.getStringArray(
-                                                                            R.array.tipe_kegiatan
-                                                                        )
+                                                                        R.array.tipe_kegiatan
+                                                                    )
                                                                         .get(it.tipe!!)
                                                                         .toString()}\n" +
                                                                     "Deskripsi : ${it.deskripsi}\n"
@@ -412,8 +424,8 @@ class DetailRekamanActivity : AppCompatActivity() {
                                                         }
                                                     } else {
                                                         strCatatan += "Tipe Kegiatan : ${resources.getStringArray(
-                                                                R.array.tipe_kegiatan
-                                                            )
+                                                            R.array.tipe_kegiatan
+                                                        )
                                                             .get(it.tipe!!).toString()}\n" +
                                                                 "Deskripsi : ${it.deskripsi}\n"
                                                         doc.add(Paragraph(
@@ -466,10 +478,10 @@ class DetailRekamanActivity : AppCompatActivity() {
                                                 }
                                             } catch (e: Exception) {
                                                 Toast.makeText(
-                                                        this@DetailRekamanActivity,
-                                                        e.message,
-                                                        Toast.LENGTH_SHORT
-                                                    )
+                                                    this@DetailRekamanActivity,
+                                                    e.message,
+                                                    Toast.LENGTH_SHORT
+                                                )
                                                     .show()
                                                 e.printStackTrace()
                                             }
@@ -488,12 +500,8 @@ class DetailRekamanActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_yatidak)
         dialog.message.text = "Apakah anda akan menghapus rekaman ini ?"
         dialog.btn_ya.setOnClickListener {
-            val builderdialog = AlertDialog.Builder(this)
-            builderdialog.setCancelable(false)
-            builderdialog.setView(R.layout.progress)
-            val dialogx = builderdialog.create()
-            dialogx.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialogx.show()
+            val dialogx = LoadingDialog()
+            dialogx.show(supportFragmentManager, "Loading")
             firebaseDatabase.getReference(const.REKAMAN_DB).child(dataRekaman.idPengamat!!)
                 .child(dataRekaman.id!!).removeValue().addOnCompleteListener {
                     Toast.makeText(this, "Rekaman telah dihapus", Toast.LENGTH_LONG).show()
@@ -552,7 +560,8 @@ class DetailRekamanActivity : AppCompatActivity() {
                 holder.waktu.text = Helpers.longtoTimeFormat(model.waktu!!)
                 holder.judul.text = model.judul
                 holder.lyt.setOnClickListener {
-                    showDialogCatatan(model)
+                    val dialog = CatatanDialog(model)
+                    dialog.show(supportFragmentManager, "Catatan")
                 }
             }
 
@@ -573,48 +582,4 @@ class DetailRekamanActivity : AppCompatActivity() {
         rv_adapter?.stopListening()
     }
 
-    fun showDialogCatatan(model: CatatanModel) {
-        val dialog = Dialog(this)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.modal_catatan)
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        if (model.extraUrl.isNullOrEmpty()) {
-            dialog.lyt_extra.visibility = View.GONE
-        } else if (model.extraUrl!!.contains(".jpg", true)) {
-            dialog.ExtraVideo.visibility = View.GONE
-            Glide.with(this)
-                .asDrawable()
-                .load(model.extraUrl)
-                .transition(withCrossFade())
-                .fitCenter()
-                .into(dialog.ExtraFoto)
-        } else {
-            dialog.ExtraFoto.visibility = View.GONE
-            dialog.label_extra.text = "Video Kegiatan"
-            val mediaController = MediaController(this)
-            mediaController.setAnchorView(dialog.ExtraVideo)
-            dialog.ExtraVideo.setVideoURI(Uri.parse(model.extraUrl))
-            dialog.ExtraVideo.start()
-            dialog.ExtraVideo.setOnClickListener {
-                if (dialog.ExtraVideo.isPlaying) {
-                    dialog.ExtraVideo.stopPlayback()
-                    dialog.ExtraVideo.resume()
-                } else {
-                    dialog.ExtraVideo.start()
-                }
-            }
-        }
-        dialog.judul.text = model.judul
-        dialog.waktu.text = Helpers.longtoTimeFormat(model.waktu!!)
-        dialog.tipe_kegiatan.text = resources
-            .getStringArray(R.array.tipe_kegiatan)
-            .get(model.tipe!!)
-        dialog.deskripsi.text = model.deskripsi
-        dialog.ic_tutup.setOnClickListener { dialog.dismiss() }
-        dialog.btn_tutup.setOnClickListener { dialog.dismiss() }
-        dialog.show()
-    }
 }

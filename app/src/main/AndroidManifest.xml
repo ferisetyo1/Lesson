@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="feri.com.lesson">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="feri.com.lesson"
+    tools:ignore="LockedOrientationActivity">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -18,32 +20,69 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".modul.menuAkun.EditProfilActivity"></activity>
-        <activity android:name=".modul.notifikasi.NotifikasiActivity" />
-        <activity android:name=".modul.kelas.BerhasilTambahKelasActivity" />
-        <activity android:name=".modul.kelas.PreviewDataKelasActivity" />
-        <activity android:name=".modul.kelas.DenahKelasActivity" />
-        <activity android:name=".modul.kelas.DataKelasActivity" />
-        <activity android:name=".modul.detailRekaman.DetailRekamanActivity" />
-        <activity android:name=".modul.detailKelas.DetailKelasActivity" />
-        <activity android:name=".modul.rekaman.BerhasilRekamActivity" />
-        <activity android:name=".modul.rekaman.CatatanActivity" />
-        <activity android:name=".modul.rekaman.RekamanActivity" />
-        <activity android:name=".modul.rekaman.PreviewDataRekamanActivity" />
-        <activity android:name=".modul.kelas.DataSiswaActivity" />
-        <activity android:name=".modul.rekaman.DataRekamanActivity" />
-        <activity android:name=".modul.authentication.RegisterActivity" />
-        <activity android:name=".modul.rekaman.JoinKelasActivity" />
-        <activity android:name=".modul.authentication.LoginActivity" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".modul.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".modul.TutorialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.menuAkun.EditProfilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.kelas.BerhasilTambahKelasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.kelas.PreviewDataKelasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.kelas.DenahKelasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.kelas.DataKelasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.detailRekaman.DetailRekamanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.detailKelas.DetailKelasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.rekaman.BerhasilRekamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.rekaman.CatatanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.rekaman.RekamanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.rekaman.PreviewDataRekamanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.kelas.DataSiswaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.rekaman.DataRekamanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modul.authentication.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".modul.rekaman.JoinKelasActivity" />
+        <activity
+            android:name=".modul.authentication.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

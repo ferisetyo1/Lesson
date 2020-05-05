@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase
 import feri.com.lesson.MainActivity
 import feri.com.lesson.R
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.modul.dialog.LoadingDialog
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -32,7 +34,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         //firebase init
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = DBHelper.getDatabase()
         db_reff = firebaseDatabase.getReference(const.USER_DB)
 
         //listener
@@ -57,12 +59,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        val builderdialog = AlertDialog.Builder(this)
-        builderdialog.setCancelable(false)
-        builderdialog.setView(R.layout.progress)
-        val dialog = builderdialog.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
+        val dialog = LoadingDialog()
+        dialog.show(supportFragmentManager,"Loading")
 
         firebaseAuth.createUserWithEmailAndPassword(
             et_email.text?.trim().toString(),

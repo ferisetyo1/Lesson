@@ -17,7 +17,8 @@ class KelasModel(
     var list_siswa: ArrayList<SiswaModel> = ArrayList(),
     var list_group: ArrayList<GroupModel> = ArrayList(),
     var denahSpan: Int = 1,
-    var kodeKelas: String? = null
+    var kodeKelas: String? = null,
+    var locked: Boolean = false
 ) : Parcelable {
 
     override fun toString(): String {

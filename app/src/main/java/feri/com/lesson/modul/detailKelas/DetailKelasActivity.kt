@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,9 +22,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
+import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.model.TempRekamanModel
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.modul.detailRekaman.DetailRekamanActivity
+import feri.com.lesson.modul.dialog.LoadingDialog
+import feri.com.lesson.modul.kelas.DataKelasActivity
 import feri.com.lesson.modul.kelas.DenahKelasFragment
+import feri.com.lesson.util.DBHelper
+import feri.com.lesson.util.Helpers
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_detail_kelas.*
 import kotlinx.android.synthetic.main.dialog_yatidak.*
@@ -33,7 +40,7 @@ class DetailKelasActivity : AppCompatActivity() {
     private var rv_option: FirebaseRecyclerOptions<TempRekamanModel>? = null
     private var rv_adapter: FirebaseRecyclerAdapter<TempRekamanModel, PengamatViewHolder>? =
         null
-    private var firebaseDatabase = FirebaseDatabase.getInstance()
+    private var firebaseDatabase = DBHelper.getDatabase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +105,25 @@ class DetailKelasActivity : AppCompatActivity() {
         }
 
         val dataKelas = intent.getParcelableExtra<KelasModel>("dataKelas")
+        if (dataKelas.locked) {
+            txt_ket_tutup.setText("Kelas telah ditutup")
+            txt_ket_tutup.setTextColor(ContextCompat.getColor(this, R.color.red))
+            txt_tutup.visibility = View.GONE
+        }
+        txt_tutup.setOnClickListener {
+            val loadDialog = LoadingDialog()
+            loadDialog.show(supportFragmentManager, "loading")
+            firebaseDatabase.getReference(const.KELAS_DB).child(dataKelas.idPengajar!!)
+                .child(dataKelas.id!!).child("locked")
+                .setValue(true).addOnCompleteListener {
+                    loadDialog.dismiss()
+                    if (it.isSuccessful) {
+                        txt_ket_tutup.setText("( kelas telah ditutup )")
+                        txt_ket_tutup.setTextColor(ContextCompat.getColor(this, R.color.red))
+                        txt_tutup.visibility = View.GONE
+                    }
+                }
+        }
 
         val query = firebaseDatabase
             .getReference(const.REKAMAN_CODE)
@@ -133,6 +159,14 @@ class DetailKelasActivity : AppCompatActivity() {
             dialog_create(dataKelas)
         }
 
+        btn_edit.setOnClickListener {
+            startActivity(
+                Intent(this, DataKelasActivity::class.java).putExtra(
+                    "editData",
+                    dataKelas
+                ).putExtra("edit", true)
+            )
+        }
 
     }
 
@@ -149,6 +183,7 @@ class DetailKelasActivity : AppCompatActivity() {
                 position: Int,
                 model: TempRekamanModel
             ) {
+                Log.d("model", model.toString())
                 firebaseDatabase.getReference(const.USER_DB).child(model.idPengamat!!)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
@@ -159,6 +194,31 @@ class DetailKelasActivity : AppCompatActivity() {
                             val user = p0.getValue(UserModel::class.java)
                             holder.nomor.text = "${(position + 1)}. "
                             holder.nama_user.text = user?.nama
+                            firebaseDatabase.getReference(const.REKAMAN_DB)
+                                .child(model.idPengamat!!).child(model.idRekaman!!)
+                                .addValueEventListener(object : ValueEventListener {
+                                    override fun onCancelled(p0: DatabaseError) {
+                                        p0.toException().printStackTrace()
+                                    }
+
+                                    override fun onDataChange(p0: DataSnapshot) {
+                                        Log.d("test", p0.value.toString())
+                                        if (p0.exists()) {
+                                            val rekaman = p0.getValue(RekamanModel::class.java)
+                                            holder.layout.setOnClickListener {
+                                                startActivity(
+                                                    Intent(
+                                                        this@DetailKelasActivity,
+                                                        DetailRekamanActivity::class.java
+                                                    ).putExtra("dataRekaman", rekaman)
+                                                )
+                                            }
+                                            holder.tanggal.text =
+                                                rekaman?.tanggal!!.substring(0, 10)
+                                        }
+                                    }
+
+                                })
                         }
 
                     })
@@ -168,8 +228,10 @@ class DetailKelasActivity : AppCompatActivity() {
                 super.onDataChanged()
                 if (rv_adapter?.itemCount == 0) {
                     lyt_sudah_diobservasi.visibility = View.GONE
+                    btn_opsi.show()
                 } else {
                     lyt_sudah_diobservasi.visibility = View.VISIBLE
+                    btn_opsi.hide()
                 }
             }
         }
@@ -179,12 +241,8 @@ class DetailKelasActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_yatidak)
         dialog.message.text = "Apakah anda akan menghapus kelas ini ?"
         dialog.btn_ya.setOnClickListener {
-            val builderdialog = AlertDialog.Builder(this)
-            builderdialog.setCancelable(false)
-            builderdialog.setView(R.layout.progress)
-            val dialogx = builderdialog.create()
-            dialogx.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialogx.show()
+            val dialogx = LoadingDialog()
+            dialogx.show(supportFragmentManager, "Loading")
             firebaseDatabase.getReference(const.KELAS_DB).child(dataKelas.idPengajar!!)
                 .child(dataKelas.id!!).removeValue().addOnCompleteListener {
                     firebaseDatabase.getReference(const.CLASS_CODE).child(dataKelas.kodeKelas!!)

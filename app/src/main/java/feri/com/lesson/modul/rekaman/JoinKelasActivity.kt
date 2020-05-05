@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.TempKelasModel
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_join_kelas.*
 import kotlinx.android.synthetic.main.activity_join_kelas.empty_layout
@@ -27,7 +29,7 @@ class JoinKelasActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = DBHelper.getDatabase()
         db_reff = firebaseDatabase.getReference(const.CLASS_CODE)
 
         findKelas.addTextChangedListener(object : TextWatcher {
@@ -44,6 +46,7 @@ class JoinKelasActivity : AppCompatActivity() {
                     } else {
                         defaultlayout.visibility = View.GONE
                         empty_layout.visibility = View.VISIBLE
+                        txt_error.text="Data tidak ditemukan"
                     }
                 } else {
                     empty_layout.visibility = View.GONE
@@ -75,32 +78,44 @@ class JoinKelasActivity : AppCompatActivity() {
                 if (!p0.exists()) {
                     defaultlayout.visibility = View.GONE
                     empty_layout.visibility = View.VISIBLE
+                    txt_error.text="Data tidak ditemukan"
                     curr_kelasModel = KelasModel()
                 } else {
                     defaultlayout.visibility = View.VISIBLE
                     empty_layout.visibility = View.GONE
-                }
-                p0.children.forEach {
-                    var tempKodeClassModel = it.getValue(TempKelasModel::class.java)
-                    firebaseDatabase.getReference(const.KELAS_DB)
-                        .child(tempKodeClassModel?.idPengajar.toString())
-                        .orderByKey()
-                        .equalTo(tempKodeClassModel?.idKelas.toString())
-                        .addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(p0: DatabaseError) {
-                            }
-
-                            override fun onDataChange(p0: DataSnapshot) {
-                                p0.children.forEach {
-                                    val kelasModel = it.getValue(KelasModel::class.java)
-                                    curr_kelasModel = kelasModel!!
-                                    updateUI(kelasModel)
+                    p0.children.forEach {
+                        var tempKodeClassModel = it.getValue(TempKelasModel::class.java)
+                        firebaseDatabase.getReference(const.KELAS_DB)
+                            .child(tempKodeClassModel?.idPengajar.toString())
+                            .orderByKey()
+                            .equalTo(tempKodeClassModel?.idKelas.toString())
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(p0: DatabaseError) {
                                 }
-                            }
 
-                        })
+                                override fun onDataChange(p0: DataSnapshot) {
+                                    if (tempKodeClassModel?.idPengajar!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                                        defaultlayout.visibility = View.GONE
+                                        empty_layout.visibility = View.VISIBLE
+                                        txt_error.text="Tidak dapat merekam kelas anda sendiri"
+                                    }else{
+                                        p0.children.forEach {
+                                            val kelasModel = it.getValue(KelasModel::class.java)
+                                            if (kelasModel!!.locked){
+                                                defaultlayout.visibility = View.GONE
+                                                empty_layout.visibility = View.VISIBLE
+                                                txt_error.text="Kelas telah ditutup"
+                                            }else{
+                                                curr_kelasModel = kelasModel!!
+                                                updateUI(kelasModel)
+                                            }
+                                        }
+                                    }
+                                }
+
+                            })
+                    }
                 }
-
             }
 
         })

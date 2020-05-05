@@ -16,6 +16,8 @@ import com.google.firebase.database.*
 
 import feri.com.lesson.R
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.modul.dialog.LoadingDialog
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.fragment_akun.*
 
@@ -28,7 +30,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
     private var mlistener: ValueEventListener? = null
     private var root: View? = null
     private var firebaseAuth = FirebaseAuth.getInstance()
-    private var firebaseDatabase = FirebaseDatabase.getInstance()
+    private var firebaseDatabase = DBHelper.getDatabase()
     private lateinit var dbuserreff: DatabaseReference
     private var user: UserModel? = null
 
@@ -55,12 +57,9 @@ class AkunFragment : Fragment(), View.OnClickListener {
             .orderByChild("idPengamat")
             .equalTo(firebaseAuth.currentUser?.uid.toString())
 
-        val builderdialog = AlertDialog.Builder(requireContext())
-        builderdialog.setCancelable(false)
-        builderdialog.setView(R.layout.progress)
-        val dialog = builderdialog.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
+
+        val dialog = LoadingDialog()
+        dialog.show(childFragmentManager,"loading")
         mlistener = dbuserreff
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {

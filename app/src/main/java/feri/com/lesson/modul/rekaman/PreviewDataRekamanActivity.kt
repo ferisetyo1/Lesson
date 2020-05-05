@@ -9,6 +9,7 @@ import feri.com.lesson.R
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_preview_data.*
 import kotlinx.android.synthetic.main.activity_preview_data.tanggalObservasi
@@ -27,7 +28,7 @@ class PreviewDataRekamanActivity : AppCompatActivity() {
         var dataRekaman = intent.getParcelableExtra<RekamanModel>("dataRekaman")
         var dataKelas = intent.getParcelableExtra<KelasModel>("dataKelas")
 
-        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = DBHelper.getDatabase()
         firebaseAuth = FirebaseAuth.getInstance()
 
         UpdateUI(dataRekaman, dataKelas)

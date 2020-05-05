@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import feri.com.lesson.modul.TutorialActivity
 import feri.com.lesson.modul.authentication.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,9 +25,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         if (firebaseAuth.currentUser == null) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, TutorialActivity::class.java))
             finish()
         }
+
 
         val nav_controller = findNavController(R.id.nav_host)
         nav_view.setupWithNavController(nav_controller)

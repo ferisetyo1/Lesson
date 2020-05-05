@@ -17,6 +17,7 @@ import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.model.TempRekamanModel
 import feri.com.lesson.modul.detailRekaman.DetailRekamanActivity
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.activity_berhasil_rekam.*
 import java.io.File
@@ -38,7 +39,7 @@ class BerhasilRekamActivity : AppCompatActivity() {
         dataKelas = intent.getParcelableExtra("dataKelas") as KelasModel
         dataRekaman = intent.getParcelableExtra("dataRekaman") as RekamanModel
 
-        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = DBHelper.getDatabase()
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
 

@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_denah_kelas.*
 
 class DenahKelasActivity : AppCompatActivity() {
 
+    private var edit: Boolean = false
     private var denahFragment: DenahKelasFragment = DenahKelasFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,8 @@ class DenahKelasActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         var dataKelas = intent.getParcelableExtra<KelasModel>("dataKelas")
+        edit = intent.getBooleanExtra("edit", false)
+        var editData = intent.getParcelableExtra<KelasModel>("editData")
         var span = 3
         var model = 0
 
@@ -45,9 +48,16 @@ class DenahKelasActivity : AppCompatActivity() {
                 if (p0?.selectedItemPosition != 0) {
                     model = p0?.selectedItemPosition!!
                     denahhh.visibility = View.VISIBLE
-                    when (model) {
-                        1 -> replace_fragment(model, dataKelas.list_siswa.size, span)
-                        else -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                    if (edit) {
+                        when (model) {
+                            1 -> replace_fragment(model, editData.list_siswa.size, span)
+                            else -> replace_fragment(model, editData.list_siswa.size, span)
+                        }
+                    } else {
+                        when (model) {
+                            1 -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                            else -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                        }
                     }
                 } else {
                     model = 0
@@ -62,9 +72,16 @@ class DenahKelasActivity : AppCompatActivity() {
                 if (!p0.isNullOrEmpty()) {
                     span = p0.toString().toInt()
                     if (model != 0) {
-                        when (model) {
-                            1 -> replace_fragment(model, dataKelas.list_siswa.size, span)
-                            else -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                        if (edit) {
+                            when (model) {
+                                1 -> replace_fragment(model, editData.list_siswa.size, span)
+                                else -> replace_fragment(model, editData.list_siswa.size, span)
+                            }
+                        } else {
+                            when (model) {
+                                1 -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                                else -> replace_fragment(model, dataKelas.list_siswa.size, span)
+                            }
                         }
                     }
                 }
@@ -83,7 +100,11 @@ class DenahKelasActivity : AppCompatActivity() {
                 Toast.makeText(this, "pilih model kelas terlebih dahulu", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            transferDataDenah(dataKelas, denahFragment?.getDataGroup())
+            if (edit) {
+                transferDataDenah(editData, denahFragment?.getDataGroup())
+            } else {
+                transferDataDenah(dataKelas, denahFragment?.getDataGroup())
+            }
         }
     }
 
@@ -94,8 +115,9 @@ class DenahKelasActivity : AppCompatActivity() {
         if (denahhh.isVisible) {
             var data_intent = Intent(this, PreviewDataKelasActivity::class.java)
             dataKelas?.list_group = dataGroup
-            dataKelas?.denahSpan=et_span.text.toString().toInt()
+            dataKelas?.denahSpan = et_span.text.toString().toInt()
             data_intent.putExtra("dataKelas", dataKelas)
+            data_intent.putExtra("edit", edit)
             startActivity(data_intent)
         }
     }

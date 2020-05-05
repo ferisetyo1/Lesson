@@ -22,6 +22,7 @@ import feri.com.lesson.R
 import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.modul.detailRekaman.DetailRekamanActivity
 import feri.com.lesson.modul.rekaman.JoinKelasActivity
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.fragment_daftar_rekaman.*
 
@@ -51,7 +52,7 @@ class DaftarRekamanFragment : Fragment(), View.OnClickListener, TextWatcher {
 
         //firebase init
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = DBHelper.getDatabase()
         db_reff = firebaseDatabase.getReference(const.REKAMAN_DB)
 
         search( null)

@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/daftarKelasFragment"
-        android:icon="@drawable/ic_classroom"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
         android:title="@string/MenuDaftarKelas"/>
 
     <item
         android:id="@+id/daftarRekamanFragment"
-        android:icon="@drawable/ic_list_music"
+        android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/MenuDaftarRekaman"/>
 
     <item

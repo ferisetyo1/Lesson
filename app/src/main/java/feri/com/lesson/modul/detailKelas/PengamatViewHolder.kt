@@ -8,4 +8,5 @@ class PengamatViewHolder(vitem: View) : RecyclerView.ViewHolder(vitem) {
     var nomor = vitem.nomor
     var nama_user = vitem.nama_user
     var tanggal = vitem.tanggal
+    var layout=vitem.lyt
 }

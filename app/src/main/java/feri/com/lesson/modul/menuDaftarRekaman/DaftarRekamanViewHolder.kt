@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener
 import feri.com.lesson.model.KelasModel
 import feri.com.lesson.model.RekamanModel
 import feri.com.lesson.model.UserModel
+import feri.com.lesson.util.DBHelper
 import feri.com.lesson.util.const
 import kotlinx.android.synthetic.main.item_daftar_rekaman.view.*
 
@@ -25,7 +26,7 @@ class DaftarRekamanViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         judul.text = get.judul
         tglObservasi.text = get.tanggal
 
-        val firebaseDatabase = FirebaseDatabase.getInstance()
+        val firebaseDatabase = DBHelper.getDatabase()
         firebaseDatabase.getReference(const.USER_DB).child(get.idPengajar!!)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {

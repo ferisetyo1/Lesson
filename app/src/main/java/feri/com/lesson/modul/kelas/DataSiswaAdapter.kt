@@ -6,21 +6,51 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import feri.com.lesson.R
 import feri.com.lesson.model.SiswaModel
 import kotlinx.android.synthetic.main.item_data_siswa.view.*
 
-class DataSiswaAdapter(val context: Context?, var listSiswa: ArrayList<SiswaModel>) :
+class DataSiswaAdapter(var context: Context?, listSiswaArrayList: ArrayList<SiswaModel>) :
     RecyclerView.Adapter<DataSiswaAdapter.ViewHolder>() {
+
+    init {
+        listSiswa = listSiswaArrayList
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nama = itemView.namaSiswa
         val absen = itemView.absen
+        val myCustomEditText = MyCustomEditText()
         fun bind(siswaModel: SiswaModel) {
             nama.setText(siswaModel.nama)
             absen.text = siswaModel.absen.toString()
+            nama.addTextChangedListener(myCustomEditText)
         }
+    }
+
+    class MyCustomEditText : TextWatcher {
+        var position: Int = -1
+
+        fun updatePosition(i: Int) {
+            position = i
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            if (p0?.length!! > 0) {
+                listSiswa.get(position).nama = p0.toString()
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,34 +68,27 @@ class DataSiswaAdapter(val context: Context?, var listSiswa: ArrayList<SiswaMode
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position==0){
-            holder.nama.requestFocus()
-        }
-        holder.nama.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0.isNullOrEmpty()) {
-                    holder.nama.setError(context?.getString(R.string.errorFieldKosong))
-                }
-                listSiswa.get(position).nama = p0.toString()
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-        })
-        listSiswa.get(position).absen = when (listSiswa.get(position).absen) {
+//        listSiswa.get(position).nama = holder.nama.text.toString()
+        val siswa = listSiswa.get(position)
+        listSiswa.get(position).absen = when (siswa.absen) {
             0 -> (position + 1)
-            else -> listSiswa.get(position).absen
+            else -> siswa.absen
         }
-        holder.bind(listSiswa.get(position))
+        holder.bind(siswa)
+        holder.myCustomEditText.updatePosition(position)
     }
 
-    fun FieldisEmpty():Boolean{
-        for (siswaModel in listSiswa){
-            if (siswaModel.nama.isNullOrEmpty()){
+    fun FieldisEmpty(): Boolean {
+        for (siswaModel in listSiswa) {
+            if (siswaModel.nama.isNullOrEmpty()) {
+                Toast.makeText(context, "Harap lengkapi nama siswa", Toast.LENGTH_LONG).show()
                 return true
             }
         }
         return false
+    }
+
+    companion object {
+        lateinit var listSiswa: ArrayList<SiswaModel>
     }
 }

@@ -15,6 +15,8 @@ import kotlin.collections.ArrayList
 
 class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
 
+    private var editData: KelasModel? = null
+    private var edit: Boolean = false
     private lateinit var curr_dataKelas: KelasModel
     private lateinit var curr_dataSiswa: ArrayList<SiswaModel>
     private lateinit var curr_denahKelas: ArrayList<Int>
@@ -27,6 +29,14 @@ class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
 
         //firebase init
         firebaseAuth = FirebaseAuth.getInstance()
+        edit = intent.getBooleanExtra("edit", false)
+        editData = intent.getParcelableExtra<KelasModel>("editData")
+        if (edit) {
+            et_namakelas.setText(editData!!.nama)
+            et_namasekolah.setText(editData!!.namaSekolah)
+            et_pelajaran.setText(editData!!.namaPelajaran)
+            et_jumlahsiswa.setText(editData!!.list_siswa.size.toString())
+        }
 
         btn_back.setOnClickListener(this)
         btn_datasiswa.setOnClickListener(this)
@@ -49,17 +59,21 @@ class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
         }
         var data_intent = Intent(this, DataSiswaActivity::class.java)
         data_intent.putExtra(
-            "dataKelas", KelasModel(
-                KeyGen.create("kelas", "_",16),
-                firebaseAuth.uid.toString(),
-                et_namakelas.text.toString().toLowerCase().trim(),
-                et_namasekolah.text.toString().toLowerCase().trim(),
-                et_pelajaran.text.toString().toLowerCase().trim(),
-                ArrayList<SiswaModel>(), ArrayList<GroupModel>(),
-                1,
-                null
-            )
+            "dataKelas", KelasModel().apply {
+                id = KeyGen.create("kelas", "_", 16)
+                idPengajar = firebaseAuth.uid.toString()
+                nama = et_namakelas.text.toString().toLowerCase().trim()
+                namaSekolah = et_namasekolah.text.toString().toLowerCase().trim()
+                namaPelajaran = et_pelajaran.text.toString().toLowerCase().trim()
+            }
         )
+        data_intent.putExtra("edit", true)
+        editData?.apply {
+            nama = et_namakelas.text.toString().toLowerCase().trim()
+            namaSekolah = et_namasekolah.text.toString().toLowerCase().trim()
+            namaPelajaran = et_pelajaran.text.toString().toLowerCase().trim()
+        }
+        data_intent.putExtra("editData", editData)
         data_intent.putExtra("jumlahSiswa", et_jumlahsiswa.text.trim().toString().toInt())
         startActivity(data_intent)
     }
