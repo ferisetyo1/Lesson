@@ -17,9 +17,6 @@ class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
 
     private var editData: KelasModel? = null
     private var edit: Boolean = false
-    private lateinit var curr_dataKelas: KelasModel
-    private lateinit var curr_dataSiswa: ArrayList<SiswaModel>
-    private lateinit var curr_denahKelas: ArrayList<Int>
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +64,7 @@ class DataKelasActivity : AppCompatActivity(), View.OnClickListener {
                 namaPelajaran = et_pelajaran.text.toString().toLowerCase().trim()
             }
         )
-        data_intent.putExtra("edit", true)
+        data_intent.putExtra("edit", edit)
         editData?.apply {
             nama = et_namakelas.text.toString().toLowerCase().trim()
             namaSekolah = et_namasekolah.text.toString().toLowerCase().trim()

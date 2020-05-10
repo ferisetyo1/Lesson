@@ -20,14 +20,14 @@
         <ImageView
             android:id="@+id/imageView14"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_illustration" />
+            android:layout_height="200dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/app_icon" />
 
         <TextView
             android:id="@+id/textView40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="@string/kepanjangan_leson"
             android:textAlignment="center"
             android:textColor="@color/colorBlueLab"

@@ -28,9 +28,10 @@ class DataSiswaActivity : AppCompatActivity() {
         dataKelas = intent.getParcelableExtra<KelasModel>("dataKelas")
         edit = intent.getBooleanExtra("edit", false)
         editData = intent.getParcelableExtra<KelasModel>("editData")
-        if (edit) {
-            if (jumlahSiswa >= editData!!.list_siswa.size) {
-                listSiswa = editData!!.list_siswa
+        Log.d("edit",edit.toString())
+        if (edit==true) {
+            if (jumlahSiswa >= editData?.list_siswa!!.size) {
+                listSiswa = editData?.list_siswa!!
                 generate_siswa(jumlahSiswa - listSiswa.size)
             } else {
                 var count = 1
