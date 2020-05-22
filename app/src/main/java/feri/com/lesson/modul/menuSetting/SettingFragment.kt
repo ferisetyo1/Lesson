@@ -40,7 +40,7 @@ class SettingFragment : Fragment() {
         }
         tv_logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(activity, LoginActivity::class.java))
+            startActivity(Intent(activity, LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
             activity?.finish()
         }
     }

@@ -46,7 +46,7 @@ class JoinKelasActivity : AppCompatActivity() {
                     } else {
                         defaultlayout.visibility = View.GONE
                         empty_layout.visibility = View.VISIBLE
-                        txt_error.text="Data tidak ditemukan"
+                        txt_error.text = "Data tidak ditemukan"
                     }
                 } else {
                     empty_layout.visibility = View.GONE
@@ -78,7 +78,7 @@ class JoinKelasActivity : AppCompatActivity() {
                 if (!p0.exists()) {
                     defaultlayout.visibility = View.GONE
                     empty_layout.visibility = View.VISIBLE
-                    txt_error.text="Data tidak ditemukan"
+                    txt_error.text = "Data tidak ditemukan"
                     curr_kelasModel = KelasModel()
                 } else {
                     defaultlayout.visibility = View.VISIBLE
@@ -94,20 +94,38 @@ class JoinKelasActivity : AppCompatActivity() {
                                 }
 
                                 override fun onDataChange(p0: DataSnapshot) {
-                                    if (tempKodeClassModel?.idPengajar!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                                    if (tempKodeClassModel?.idPengajar!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
                                         defaultlayout.visibility = View.GONE
                                         empty_layout.visibility = View.VISIBLE
-                                        txt_error.text="Tidak dapat merekam kelas anda sendiri"
-                                    }else{
+                                        txt_error.text = "Tidak dapat merekam kelas anda sendiri"
+                                    } else {
                                         p0.children.forEach {
                                             val kelasModel = it.getValue(KelasModel::class.java)
-                                            if (kelasModel!!.locked){
+                                            if (kelasModel!!.locked) {
                                                 defaultlayout.visibility = View.GONE
                                                 empty_layout.visibility = View.VISIBLE
-                                                txt_error.text="Kelas telah ditutup"
-                                            }else{
-                                                curr_kelasModel = kelasModel!!
-                                                updateUI(kelasModel)
+                                                txt_error.text = "Kelas telah ditutup"
+                                            } else {
+                                                firebaseDatabase.getReference(const.REKAMAN_DB)
+                                                    .child(FirebaseAuth.getInstance().uid!!)
+                                                    .orderByChild("idKelas").equalTo(kelasModel.id)
+                                                    .addValueEventListener(object :ValueEventListener{
+                                                        override fun onCancelled(p0: DatabaseError) {
+                                                            p0.toException().printStackTrace()
+                                                        }
+
+                                                        override fun onDataChange(p0: DataSnapshot) {
+                                                            if (!p0.exists()){
+                                                                curr_kelasModel = kelasModel!!
+                                                                updateUI(kelasModel)
+                                                            }else{
+                                                                defaultlayout.visibility = View.GONE
+                                                                empty_layout.visibility = View.VISIBLE
+                                                                txt_error.text = "Anda telah melakukan rekaman pada kelas ini"
+                                                            }
+                                                        }
+
+                                                    })
                                             }
                                         }
                                     }

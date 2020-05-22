@@ -101,11 +101,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            android:onClick="login"
             android:text="MASUK LESON"
             android:textAlignment="center"
-            android:onClick="login"
             android:textColor="@color/colorBlueLab"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

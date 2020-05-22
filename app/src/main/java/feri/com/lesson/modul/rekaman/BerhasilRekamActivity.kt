@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -95,6 +96,15 @@ class BerhasilRekamActivity : AppCompatActivity() {
                                                 (100.0 * it.bytesTransferred) / it.totalByteCount
                                             seekBar.progress = progress.toInt()
                                             tv_progress.text = "${progress.toInt()}/100"
+                                            if(progress>=100){
+                                                if (posisi == dataRekaman.listCatatan.size - 1) {
+                                                    uploadlayout.visibility = View.GONE
+                                                    default_layout.visibility = View.VISIBLE
+                                                    Log.d("test","berhasil")
+                                                }
+                                                Log.d("posisi",posisi.toString())
+                                                Log.d("size",dataRekaman.listCatatan.size.toString())
+                                            }
                                         }.addOnSuccessListener {
                                             catatanReff.downloadUrl.addOnCompleteListener {
                                                 val url = it.result
@@ -159,7 +169,7 @@ class BerhasilRekamActivity : AppCompatActivity() {
                 Intent(this, MainActivity::class.java).putExtra(
                     "specialSelect",
                     R.id.daftarRekamanFragment
-                )
+                ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             )
             finish()
         }
